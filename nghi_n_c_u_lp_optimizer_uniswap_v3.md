@@ -1,5 +1,5 @@
-## Đánh Giá Hiệu Quả Cung Cấp Thanh Khoản Tập Trung Và Tối Ưu Vùng Giá Trên Uniswap v3
-
+# CD6_UNISWAP_LP
+Đánh giá hiệu quả cung cấp thanh khoản tập trung và tối ưu vùng giá trên Uniswap v3
 ---
 
 ## 1. Xác định vấn đề nghiên cứu (Research Problem Formulation)
