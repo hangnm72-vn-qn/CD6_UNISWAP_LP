@@ -166,7 +166,7 @@ $$IL(P) = V_{LP}(P) - V_{HODL}(P) = L \left( 2\sqrt{P} - \sqrt{P_0} - \frac{P}{\
 
 Mức tổn thất tạm thời tương đối:
 
-$$\text{IL}_{\%}(P) = \frac{V_{LP}(P) - V_{HODL}(P)}{V_{HODL}(P)}$$
+$$IL_{\text{\%}}(P) = \frac{V_{LP}(P) - V_{HODL}(P)}{V_{HODL}(P)}$$
 
 **Tính chất khuếch đại (Amplification Factor):**  
 So với v2 (vốn có $P_L \to 0, P_U \to \infty$), tỷ lệ suy giảm giá trị trên mỗi đơn vị dịch chuyển giá $dP$ của v3 lớn hơn gấp nhiều lần. Tỷ số khuếch đại vốn xấp xỉ:
