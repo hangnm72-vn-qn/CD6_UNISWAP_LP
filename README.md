@@ -2,13 +2,13 @@
 Đánh giá hiệu quả cung cấp thanh khoản tập trung và tối ưu vùng giá trên Uniswap v3
 ---
 
-## 1. Xác định vấn đề nghiên cứu (Research Problem Formulation)
+## 1. Xác định vấn đề nghiên cứu 
 
-### 1.1. Thực trạng cung cấp thanh khoản tập trung (Concentrated Liquidity) trên Uniswap v3
-Sự ra đời của cơ chế Nhà tạo lập thị trường tự động thanh khoản tập trung (Concentrated Liquidity Automated Market Maker - CLMM) trên Uniswap v3 đã tạo nên bước ngoặt cấu trúc trong tài chính phi tập trung (DeFi). Khác với mô hình CPMM ($x \cdot y = k$) truyền thống của Uniswap v2 phân bổ vốn trên toàn dải giá $(0, \infty)$, Uniswap v3 cho phép Liquidity Provider (LP) tập trung vốn trong một dải giá hữu hạn $[P_L, P_U]$.
+### 1.1. Thực trạng cung cấp thanh khoản tập trung trên Uniswap v3
+Sự ra đời của cơ chế Nhà tạo lập thị trường tự động thanh khoản tập trung (Concentrated Liquidity Automated Market Maker - CLMM) trên Uniswap v3 đã tạo nên bước ngoặt cấu trúc trong tài chính phi tập trung. Khác với mô hình CPMM ($x \cdot y = k$) truyền thống của Uniswap v2 phân bổ vốn trên toàn dải giá $(0, \infty)$, Uniswap v3 cProvidercung cấp thanh khoản (Liquidity Provider - LP) tập trung vốn trong một dải giá hữu hạn $[P_L, P_U]$.
 
-Mặc dù hiệu quả sử dụng vốn danh nghĩa (capital efficiency) có thể tăng lên hàng nghìn lần, thực tiễn vận hành bộc lộ nghịch lý lớn:
-- Phần lớn LP cá nhân ghi nhận **lợi nhuận ròng âm** so với chiến lược thụ động nắm giữ (HODL), do phí thu được không bù đắp nổi tổn thất tạm thời (Impermanent Loss - IL) khuếch đại và chi phí tái cân bằng (rebalancing costs).
+Mặc dù hiệu quả sử dụng vốn danh nghĩa có thể tăng lên hàng nghìn lần, thực tiễn vận hành bộc lộ nghịch lý lớn:
+- Phần lớn LP cá nhân ghi nhận **lợi nhuận ròng âm** so với chiến lược thụ động nắm giữ (HODL), do phí thu được không bù đắp nổi tổn thất tạm thời (Impermanent Loss - IL) khuếch đại và chi phí tái cân bằng.
 - Cạnh tranh bất đối xứng: Các nhà tạo lập thị trường chuyên nghiệp (JIT - Just-In-Time liquidity bots, MEV searchers) liên tục rút/bơm thanh khoản xung quanh các giao dịch lớn, chèn ép lợi nhuận của các LP thụ động.
 
 ### 1.2. Khi nào LP có lợi hơn HODL?
@@ -22,10 +22,10 @@ $$\Delta R_i = R^{LP}_i - R^{HODL}_i > 0$$
 3. **Chi phí trượt giá & Rebalance ($RebalancingCost_i$):** Tổn thất khi tái cơ cấu dải giá khi giá thị trường lệch khỏi $[P_L, P_U]$.
 
 LP chỉ có lợi hơn HODL trong các điều kiện thị trường biên:
-- Tài sản dao động tích lũy (mean-reverting) trong một dải biến động xác định với khối lượng giao dịch cao ($Volume / TVL$ cao).
-- Biến động thực tế (Realized Volatility) thấp hơn mức biến động hàm ý được định giá qua phí pool (Fee Tier).
+- Tài sản dao động tích lũy trong một dải biến động xác định với khối lượng giao dịch cao ($Volume / TVL$ cao).
+- Biến động thực tế thấp hơn mức biến động hàm ý được định giá qua phí pool.
 
-### 1.3. Trade-off tứ giác cốt lõi (The Fundamental Quadrilemma of CLMM)
+### 1.3. Trade-off tứ giác cốt lõi 
 LP trên Uniswap v3 luôn đối mặt với bài toán tối ưu đa biến giữa 4 yếu tố xung đột:
 
 ```
@@ -44,12 +44,12 @@ LP trên Uniswap v3 luôn đối mặt với bài toán tối ưu đa biến gi�
 
 1. **Fee Income vs. Out-of-Range Risk:** 
    - Thu hẹp biên độ $[P_L, P_U]$ giúp phóng đại thanh khoản ảo $L$, tối đa hóa tỷ lệ nhận phí giao dịch khi giá nằm trong vùng.
-   - Tuy nhiên, biên hẹp làm tăng xác suất giá văng ra ngoài dải (out-of-range), khiến vị thế ngừng tạo ra dòng tiền và rơi vào trạng thái 100% tài sản mất giá.
+   - Tuy nhiên, biên hẹp làm tăng xác suất giá văng ra ngoài dải, khiến vị thế ngừng tạo ra dòng tiền và rơi vào trạng thái 100% tài sản mất giá.
 2. **Out-of-Range Risk vs. Rebalancing & Gas Cost:** 
    - Để khắc phục việc lệch vùng, LP buộc phải tái cân bằng (đóng vị thế cũ, swap cân bằng tài sản, mở vị thế mới).
    - Tần suất tái cân bằng càng cao thì chi phí gas và trượt giá giao dịch càng bào mòn tổng lợi nhuận.
 3. **Fee Income vs. Impermanent Loss:** 
-   - Đòn bẩy thanh khoản càng cao thì tốc độ hội tụ tài sản về phía đồng tiền giảm giá càng nhanh khi có xu hướng (trend), làm gia tăng tổn thất IL theo cấp số nhân so với Uniswap v2.
+   - Đòn bẩy thanh khoản càng cao thì tốc độ hội tụ tài sản về phía đồng tiền giảm giá càng nhanh khi có xu hướng, làm gia tăng tổn thất IL theo cấp số nhân so với Uniswap v2.
 
 ---
 
@@ -59,8 +59,8 @@ LP trên Uniswap v3 luôn đối mặt với bài toán tối ưu đa biến gi�
 - **Mục tiêu tổng quát:** Xây dựng cơ sở lý thuyết, mô hình định lượng và công cụ thực nghiệm nhằm giải thích hiệu quả kinh tế của việc cung cấp thanh khoản tập trung trên Uniswap v3; từ đó phát triển thuật toán tối ưu hóa dải giá $[P_L, P_U]$ thích ứng với biến động thị trường.
 - **Mục tiêu cụ thể:**
   1. Phân rã cấu trúc lợi nhuận của LP trên dữ liệu thực tế (Fee Income, Impermanent Loss, Rebalancing Cost, Inventory Return).
-  2. Đo lường tác động của độ rộng dải giá (Range Width) và các biến số kinh tế vĩ mô của pool (Volatility, Volume, TVL, Fee tier) lên tỷ suất sinh lời điều chỉnh theo rủi ro (Risk-adjusted Returns).
-  3. Xây dựng và kiểm định (Backtesting) 4 chiến lược dải giá (Wide, Fixed Symmetric, Volatility-Scaled, Dynamic Rolling).
+  2. Đo lường tác động của độ rộng dải giá và các biến số kinh tế vĩ mô của pool (Volatility, Volume, TVL, Fee tier) lên tỷ suất sinh lời điều chỉnh theo rủi ro.
+  3. Xây dựng và kiểm định 4 chiến lược dải giá (Wide, Fixed Symmetric, Volatility-Scaled, Dynamic Rolling).
   4. Đóng gói mô hình thành một công cụ định lượng (DeFi LP Optimizer & Interactive Dashboard) triển khai qua GitHub Pages/Streamlit.
 
 ### 2.2. Phạm vi nghiên cứu (Scope of Study)
@@ -68,32 +68,31 @@ LP trên Uniswap v3 luôn đối mặt với bài toán tối ưu đa biến gi�
 #### Không gian tài sản (Asset Space)
 Lựa chọn 4 pool đại diện phản ánh 4 cấu trúc vi mô điển hình:
 - **WETH/USDC (Fee 0.05% & 0.3%):** Cặp biến động/ổn định (Volatile/Stable) có thanh khoản và khối lượng dẫn dắt thị trường; cho phép phân tích độ nhạy của Fee Tier.
-- **WETH/USDT (Fee 0.3%):** Cặp đối chứng thanh khoản và độ lệch chênh lệch giá (cross-stable comparison).
-- **WBTC/WETH (Fee 0.05%):** Cặp tài sản tiền mã hóa tương quan dương cao (Crypto/Crypto), biến động giá tương đối thấp hơn cặp Stablecoin.
-- **USDC/USDT (Fee 0.01%):** Cặp tiền tệ ổn định (Stable/Stable), $IL \approx 0$, đóng vai trò Benchmark kiểm chứng mô hình thuần về phí và rủi ro depeg.
+- **WETH/USDT (Fee 0.3%):** Cặp đối chứng thanh khoản và độ lệch chênh lệch giá.
+- **WBTC/WETH (Fee 0.05%):** Cặp tài sản tiền mã hóa tương quan dương cao, biến động giá tương đối thấp hơn cặp Stablecoin.
+- **USDC/USDT (Fee 0.01%):** Cặp tiền tệ ổn định, $IL \approx 0$, đóng vai trò Benchmark kiểm chứng mô hình thuần về phí và rủi ro depeg.
 
 #### Khung thời gian và Tần suất dữ liệu
 - **Giai đoạn nghiên cứu:** 01/01/2025 – 30/09/2026 (21 tháng liên tục).
 - **Tần suất dữ liệu phân tích:**
-  - *Tập chính (Baseline - Pool-day):* 21 tháng dữ liệu ngày phục vụ phân tích kinh tế lượng (Econometric panel regression) và backtest tổng thể.
+  - *Tập chính (Baseline - Pool-day):* 21 tháng dữ liệu ngày phục vụ phân tích kinh tế lượng và backtest tổng thể.
   - *Tập bổ trợ (Sub-sample - Pool-hour):* 1–3 tháng gần nhất tần suất giờ dùng cho Robustness check, Stress test và kiểm định tần suất tái cân bằng nội ngày.
 
 ---
 
 ### 2.3. Hệ thống 5 Câu hỏi nghiên cứu (Research Questions - RQs)
 
-* **RQ1 (Decomposition & Profitability):** Lợi nhuận ròng của LP trên Uniswap v3 có thực sự tạo ra giá trị thặng dư so với chiến lược nắm giữ thụ động (HODL) hay phần lớn fee income thu được bị lấn át hoàn toàn bởi tổn thất tạm thời (Impermanent Loss) và chi phí giao dịch?
-* **RQ2 (Range Width Dynamics):** Độ rộng của dải giá (Range Width $\Delta P = P_U - P_L$) tác động phi tuyến như thế nào đến tỷ suất sinh lời điều chỉnh theo rủi ro (Sharpe/Sortino ratio) của vị thế thanh khoản?
-* **RQ3 (Empirical Drivers):** Biến động giá (Realized/GARCH Volatility), Khối lượng giao dịch (Volume), Tỷ lệ tập trung vốn và Hạng mức phí (Fee tier) giải thích mức độ chênh lệch lợi nhuận ròng ($\Delta R_i$) giữa các pool như thế nào?
-* **RQ4 (Static vs. Dynamic Strategy Trade-off):** Các chiến lược dải giá động (Dynamic/Rolling ranges) có duy trì được hiệu quả vượt trội so với các chiến lược dải giá tĩnh (Static ranges) sau khi đã hạch toán đầy đủ chi phí trượt giá và phí gas blockchain hay không?
-* **RQ5 (Quantitative Optimization):** Liệu có thể xây dựng một thuật toán tối ưu hóa (Optimizer) cho phép dự phóng tự động biên độ $[P_L^*, P_U^*]$ tối ưu dựa trên biến động dự báo (GARCH/EWMA) và khối lượng kỳ vọng nhằm cực đại hóa lợi nhuận kỳ vọng có ràng buộc rủi ro?
+* **RQ1 (Decomposition & Profitability):** Lợi nhuận ròng của LP trên Uniswap v3 có thực sự tạo ra giá trị thặng dư so với chiến lược nắm giữ thụ động (HODL) hay phần lớn fee income thu được bị lấn át hoàn toàn bởi tổn thất tạm thời và chi phí giao dịch?
+* **RQ2 (Range Width Dynamics):** Độ rộng của dải giá ($\Delta P = P_U - P_L$) tác động phi tuyến như thế nào đến tỷ suất sinh lời điều chỉnh theo rủi ro của vị thế thanh khoản?
+* **RQ3 (Empirical Drivers):** Biến động giá (Realized/GARCH Volatility), Khối lượng giao dịch, Tỷ lệ tập trung vốn và Hạng mức phí giải thích mức độ chênh lệch lợi nhuận ròng ($\Delta R_i$) giữa các pool như thế nào?
+* **RQ4 (Static vs. Dynamic Strategy Trade-off):** Các chiến lược dải giá động có duy trì được hiệu quả vượt trội so với các chiến lược dải giá tĩnh sau khi đã hạch toán đầy đủ chi phí trượt giá và phí gas blockchain hay không?
+* **RQ5 (Quantitative Optimization):** Liệu có thể xây dựng một thuật toán tối ưu hóa cho phép dự phóng tự động biên độ $[P_L^*, P_U^*]$ tối ưu dựa trên biến động dự báo (GARCH/EWMA) và khối lượng kỳ vọng nhằm cực đại hóa lợi nhuận kỳ vọng có ràng buộc rủi ro?
 
 ---
 
 ## 3. Cơ sở lý thuyết: Toán học Uniswap v3 và Cơ chế Range Width
 
-### 3.1. Mô hình Thanh khoản tập trung (Concentrated Liquidity Formulations)
-
+### 3.1. Mô hình Thanh khoản tập trung 
 Trong Uniswap v2, phương trình cân bằng liên tục là $x \cdot y = k$, với thanh khoản $L = \sqrt{x \cdot y}$ và giá giao ngay $P = y / x$ (với $y$ là token quy ước, ví dụ USDC; $x$ là token cơ sở, ví dụ WETH).
 
 Trong Uniswap v3, thanh khoản thực được dịch chuyển bằng khái niệm **Virtual Reserves (Dự trữ ảo)**. Khi LP cung cấp thanh khoản trong dải $[P_L, P_U]$ với $P_L < P_U$, đường cong cân bằng trở thành:
@@ -205,7 +204,7 @@ Ràng buộc:
 
 ---
 
-## 4. Tổng quan tài liệu nghiên cứu (Literature Review)
+## 4. Tổng quan tài liệu nghiên cứu 
 
 Bảng tổng hợp dưới đây phân tích các nghiên cứu nền tảng về AMM, Uniswap v3 và cơ chế thanh khoản tập trung:
 
