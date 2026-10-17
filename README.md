@@ -12,7 +12,7 @@ Mặc dù hiệu quả sử dụng vốn danh nghĩa có thể tăng lên hàng 
 - Cạnh tranh bất đối xứng: Các nhà tạo lập thị trường chuyên nghiệp (JIT - Just-In-Time liquidity bots, MEV searchers) liên tục rút/bơm thanh khoản xung quanh các giao dịch lớn, chèn ép lợi nhuận của các LP thụ động.
 
 ### 1.2. Khi nào LP có lợi hơn HODL?
-Một vị thế LP $i$ vượt trội hơn chiến lược HODL cùng danh mục tài sản cơ sở khi và chỉ khi phần thặng dư hiệu năng (Excess Return) dương:
+Một vị thế LP $i$ vượt trội hơn chiến lược HODL cùng danh mục tài sản cơ sở khi và chỉ khi phần thặng dư hiệu năng dương:
 
 $$\Delta R_i = R^{LP}_i - R^{HODL}_i > 0$$
 
@@ -23,7 +23,7 @@ $$\Delta R_i = R^{LP}_i - R^{HODL}_i > 0$$
 
 LP chỉ có lợi hơn HODL trong các điều kiện thị trường biên:
 - Tài sản dao động tích lũy trong một dải biến động xác định với khối lượng giao dịch cao ($Volume / TVL$ cao).
-- Biến động thực tế thấp hơn mức biến động hàm ý được định giá qua phí pool.
+- Biến động thực tế thấp hơn mức biến động hàm ý được định giá qua phí pool (Fee Tier).
 
 ### 1.3. Trade-off tứ giác cốt lõi 
 LP trên Uniswap v3 luôn đối mặt với bài toán tối ưu đa biến giữa 4 yếu tố xung đột:
