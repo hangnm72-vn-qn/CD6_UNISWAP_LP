@@ -1,4 +1,3 @@
-# KHUNG NGHIÊN CỨU & CƠ SỞ LÝ THUYẾT ĐỒ ÁN
 ## Đánh Giá Hiệu Quả Cung Cấp Thanh Khoản Tập Trung Và Tối Ưu Vùng Giá Trên Uniswap v3
 
 ---
