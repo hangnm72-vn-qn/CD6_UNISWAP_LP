@@ -29,17 +29,19 @@ LP chỉ có lợi hơn HODL trong các điều kiện thị trường biên:
 LP trên Uniswap v3 luôn đối mặt với bài toán tối ưu đa biến giữa 4 yếu tố xung đột:
 
 ```
-                  [Fee Income (Thu nhập phí)]
+                     [Thu nhập phí]
+                      (Fee Income)
                             ▲
                            / \
                           /   \
                          /     \
-   [Out-of-Range Risk] ◄─────────► [Rebalancing & Gas Cost]
-                         \     /
+    [Rủi ro Lệch vùng] ◄─────────► [Chi phí Tái cân bằng & Gas]
+    (Out-of-Range Risk)  \     /    (Rebalancing & Gas Cost)
                           \   /
                            \ /
                             ▼
-              [Impermanent Loss Amplification]
+              [Tổn thất Tạm thời Khuếch đại]
+             (Impermanent Loss Amplification)
 ```
 
 1. **Fee Income vs. Out-of-Range Risk:** 
