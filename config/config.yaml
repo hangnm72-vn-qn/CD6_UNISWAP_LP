@@ -1,0 +1,83 @@
+# Cấu hình chung cho Pipeline Thu thập & Xử lý Dữ liệu Uniswap v3
+project:
+  name: "uniswap-v3-lp-optimizer"
+  version: "1.0.0"
+
+# Cấu hình thời gian (Uniswap v3 Mainnet khởi chạy từ khoảng 2021-05-05)
+timeframe:
+  start_date: "2021-05-05T00:00:00Z"
+  end_date: "2026-10-15T00:00:00Z"
+  granularity: "hourly" # 'hourly' hoặc 'daily'
+
+# Danh sách 4 Pool trọng tâm trên Ethereum Mainnet
+pools:
+  - name: "WETH-USDC-005"
+    address: "0x88e6a0c2ddd26feeb64f039a2c41296fcb3f5640"
+    fee_tier: 500
+    token0:
+      symbol: "USDC"
+      decimals: 6
+    token1:
+      symbol: "WETH"
+      decimals: 18
+    price_quote: "USD_per_WETH"
+
+  - name: "WETH-USDT-030"
+    address: "0x4e68ccd3e89f51c3074ca5072bbac773960dfa36"
+    fee_tier: 3000
+    token0:
+      symbol: "WETH"
+      decimals: 18
+    token1:
+      symbol: "USDT"
+      decimals: 6
+    price_quote: "USD_per_WETH"
+
+  - name: "WBTC-WETH-005"
+    address: "0x4585fe77225b41b697c938b018e2ac67ac5a20c0"
+    fee_tier: 500
+    token0:
+      symbol: "WBTC"
+      decimals: 8
+    token1:
+      symbol: "WETH"
+      decimals: 18
+    price_quote: "WETH_per_WBTC"
+
+  - name: "USDC-USDT-001"
+    address: "0x3416cf6c708da44db2624d63ea0aaef7113527c6"
+    fee_tier: 100
+    token0:
+      symbol: "USDC"
+      decimals: 6
+    token1:
+      symbol: "USDT"
+      decimals: 6
+    price_quote: "USDT_per_USDC"
+
+# Cấu hình API Endpoints
+endpoints:
+  thegraph_subgraph_id: "5zvR82QoaXYFyDEKLZ9t6v9adgnptxYpKpSbxtgVENFV"
+  thegraph_gateway_url: "https://gateway.thegraph.com/api/{api_key}/subgraphs/id/{subgraph_id}"
+  binance_klines_url: "https://api.binance.com/api/v3/klines"
+  defillama_protocol_url: "https://api.llama.fi/protocol/uniswap-v3"
+  etherscan_api_url: "https://api.etherscan.io/api"
+
+# Tham số tính toán Features
+features:
+  volatility_windows: [24, 168, 720] # 1 ngày, 7 ngày, 30 ngày (theo giờ)
+  annualization_factor_hourly: 8760 # 24 * 365
+  garch:
+    p: 1
+    q: 1
+    mean: "Zero"
+    dist: "Normal"
+    refit_frequency_hours: 24 # Daily refit để tối ưu tốc độ và không look-ahead
+  gas:
+    estimated_rebalance_gas_units: 300000
+
+# Ngưỡng Unit Test kiểm tra tính toàn vẹn dữ liệu
+testing:
+  max_missing_ratio: 0.05
+  max_consecutive_missing_hours: 6
+  outlier_price_deviation_ratio: 0.15 # Cảnh báo nếu giá lệch > 15% so với benchmark

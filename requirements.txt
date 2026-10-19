@@ -1,0 +1,20 @@
+# Data manipulation & Storage
+pandas>=2.0.0
+numpy>=1.24.0
+pyarrow>=14.0.0
+fastparquet>=2023.10.0
+
+# Econometrics & Modeling
+arch>=6.2.0
+scipy>=1.10.0
+statsmodels>=0.14.0
+
+# Networking & API
+requests>=2.31.0
+tenacity>=8.2.3
+python-dotenv>=1.0.0
+pyyaml>=6.0.1
+
+# Quality Assurance & Testing
+pytest>=7.4.0
+pytest-mock>=3.12.0
