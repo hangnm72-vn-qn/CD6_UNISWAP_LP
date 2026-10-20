@@ -13,7 +13,7 @@ Dự án thu thập, chuẩn hóa và tạo bộ dữ liệu chuỗi thời gian
 - Xuất Parquet riêng cho từng pool, Parquet panel tổng hợp và CSV mẫu để xem nhanh.
 - Có script kiểm định dữ liệu đã xử lý và bộ kiểm thử cho tính liên tục, công thức feature và look-ahead bias.
 
-Phạm vi thời gian và bốn pool hiện được cấu hình trong [`config/config.yaml`](config/config.yaml). Dải thời gian mặc định là từ `2021-05-05` đến `2026-10-15` UTC, với độ phân giải theo giờ.
+Phạm vi thời gian và bốn pool hiện được cấu hình trong [`config/config.yaml`](config/config.yaml). Dữ liệu được lấy từ `2023-01-01 00:00` đến hết `2026-10-15` (mốc cuối `23:00`), theo UTC; dữ liệu pool-hour được dùng để tạo bộ dữ liệu đã xử lý.
 
 ## 2. Kiến trúc và module
 
@@ -45,6 +45,7 @@ API nguồn
 | [`src/data/clean.py`](src/data/clean.py) | Đọc dữ liệu gốc, chuẩn hóa giá, căn lưới giờ, điền nến khuyết và gắn cờ outlier. |
 | [`src/data/features.py`](src/data/features.py) | Tính biến động, GARCH, chỉ số thanh khoản và chi phí rebalance. |
 | [`src/data/build_dataset.py`](src/data/build_dataset.py) | Kết nối các bước xử lý, xuất dữ liệu từng pool, panel tổng hợp và CSV preview. |
+| [`src/data/export_requested_csv.py`](src/data/export_requested_csv.py) | Xuất CSV daily tổng hợp và CSV hourly lấy mẫu từ panel đã xử lý. |
 | [`src/data/validate_processed.py`](src/data/validate_processed.py) | Kiểm tra schema, timestamp, khoảng trống, giá trị không hợp lệ, missing và phân phối. |
 | [`tests/`](tests/) | Kiểm thử pipeline, feature và một số điều kiện chống look-ahead bias. |
 
@@ -105,7 +106,22 @@ Kết quả được lưu vào `data/processed/`:
 - `uniswap_v3_panel_4pools.parquet`: dữ liệu panel gộp các pool.
 - `uniswap_v3_sample_preview.csv`: tối đa 500 dòng đầu của panel để xem nhanh. Nếu file đang bị khóa, chương trình ghi preview sang tên có timestamp.
 
-### 4.3. Kiểm định và kiểm thử
+### 4.3. Xuất hai file CSV phục vụ phân tích
+
+Sau khi có `uniswap_v3_panel_4pools.parquet`, chạy:
+
+```powershell
+python -m src.data.export_requested_csv
+```
+
+Lệnh tạo:
+
+- `data/processed/pools_daily.csv`: tổng hợp từ dữ liệu hourly theo ngày và pool. OHLC lấy lần lượt giá mở đầu ngày, giá cao nhất, thấp nhất và giá đóng cuối ngày; volume, fees và số giao dịch được cộng; TVL lấy giá trị cuối ngày. `hours_observed` và `is_complete_day` cho biết ngày có đủ 24 giờ dữ liệu hay không. Đây là dữ liệu daily được tổng hợp từ hourly, không phải bản sao trực tiếp của `poolDayDatas` từ Subgraph.
+- `data/processed/pools_hourly_subsample.csv`: lấy các dòng có giờ UTC là 00:00, 06:00, 12:00 hoặc 18:00 cho từng pool.
+
+Script lọc theo khoảng thời gian trong `config/config.yaml`. Nếu vừa thay đổi khoảng ngày hoặc cần dữ liệu mới hơn, hãy chạy lại các bước tải nguồn và `python -m src.data.build_dataset` trước khi export. Nếu đưa CSV lên GitHub, kiểm tra quy tắc `.gitignore`; có thể stage riêng hai file này bằng `git add -f data/processed/pools_daily.csv data/processed/pools_hourly_subsample.csv`.
+
+### 4.4. Kiểm định và kiểm thử
 
 ```powershell
 python -m src.data.validate_processed

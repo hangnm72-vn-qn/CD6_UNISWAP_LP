@@ -3,10 +3,10 @@ project:
   name: "uniswap-v3-lp-optimizer"
   version: "1.0.0"
 
-# Cấu hình thời gian (Uniswap v3 Mainnet khởi chạy từ khoảng 2021-05-05)
+# Cấu hình thời gian lấy dữ liệu (UTC, bao gồm toàn bộ ngày kết thúc)
 timeframe:
-  start_date: "2021-05-05T00:00:00Z"
-  end_date: "2026-10-15T00:00:00Z"
+  start_date: "2023-01-01T00:00:00Z"
+  end_date: "2026-10-15T23:00:00Z"
   granularity: "hourly" # 'hourly' hoặc 'daily'
 
 # Danh sách 4 Pool trọng tâm trên Ethereum Mainnet
