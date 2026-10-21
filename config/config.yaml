@@ -9,11 +9,22 @@ timeframe:
   end_date: "2026-10-15T23:00:00Z"
   granularity: "hourly" # 'hourly' hoặc 'daily'
 
-# Danh sách 4 Pool trọng tâm trên Ethereum Mainnet
+# Danh sách 5 Pool trọng tâm trên Ethereum Mainnet
 pools:
   - name: "WETH-USDC-005"
     address: "0x88e6a0c2ddd26feeb64f039a2c41296fcb3f5640"
     fee_tier: 500
+    token0:
+      symbol: "USDC"
+      decimals: 6
+    token1:
+      symbol: "WETH"
+      decimals: 18
+    price_quote: "USD_per_WETH"
+
+  - name: "WETH-USDC-030"
+    address: "0x8ad599c3a0ff1de082011efddc58f1908eb6e6d8"
+    fee_tier: 3000
     token0:
       symbol: "USDC"
       decimals: 6

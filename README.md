@@ -13,7 +13,7 @@ Dự án thu thập, chuẩn hóa và tạo bộ dữ liệu chuỗi thời gian
 - Xuất Parquet riêng cho từng pool, Parquet panel tổng hợp và CSV mẫu để xem nhanh.
 - Có script kiểm định dữ liệu đã xử lý và bộ kiểm thử cho tính liên tục, công thức feature và look-ahead bias.
 
-Phạm vi thời gian và bốn pool hiện được cấu hình trong [`config/config.yaml`](config/config.yaml). Dữ liệu được lấy từ `2023-01-01 00:00` đến hết `2026-10-15` (mốc cuối `23:00`), theo UTC; dữ liệu pool-hour được dùng để tạo bộ dữ liệu đã xử lý.
+Phạm vi thời gian và năm pool hiện được cấu hình trong [`config/config.yaml`](config/config.yaml). Dữ liệu được lấy từ `2023-01-01 00:00` đến hết `2026-10-15` (mốc cuối `23:00`), theo UTC; dữ liệu pool-hour được dùng để tạo bộ dữ liệu đã xử lý.
 
 ## 2. Kiến trúc và module
 
