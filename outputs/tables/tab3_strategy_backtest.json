@@ -1,0 +1,587 @@
+{
+  "pool_id": "ETH-USDC-0.05",
+  "cumulative_returns": [
+    {
+      "timestamp": "2023-01-01",
+      "strategy_full_range": 99.85,
+      "strategy_narrow": 99.85,
+      "strategy_moderate": 99.85,
+      "strategy_rebalance": 99.85,
+      "benchmark_hodl": 100.0
+    },
+    {
+      "timestamp": "2023-01-24",
+      "strategy_full_range": 113.7,
+      "strategy_narrow": 100.06,
+      "strategy_moderate": 96.49,
+      "strategy_rebalance": 100.83,
+      "benchmark_hodl": 114.82
+    },
+    {
+      "timestamp": "2023-02-16",
+      "strategy_full_range": 116.7,
+      "strategy_narrow": 100.06,
+      "strategy_moderate": 93.13,
+      "strategy_rebalance": 100.83,
+      "benchmark_hodl": 118.29
+    },
+    {
+      "timestamp": "2023-03-11",
+      "strategy_full_range": 113.04,
+      "strategy_narrow": 100.06,
+      "strategy_moderate": 85.73,
+      "strategy_rebalance": 100.83,
+      "benchmark_hodl": 114.07
+    },
+    {
+      "timestamp": "2023-04-03",
+      "strategy_full_range": 122.66,
+      "strategy_narrow": 100.06,
+      "strategy_moderate": 86.84,
+      "strategy_rebalance": 100.83,
+      "benchmark_hodl": 125.43
+    },
+    {
+      "timestamp": "2023-04-26",
+      "strategy_full_range": 124.55,
+      "strategy_narrow": 100.06,
+      "strategy_moderate": 76.03,
+      "strategy_rebalance": 100.83,
+      "benchmark_hodl": 127.77
+    },
+    {
+      "timestamp": "2023-05-19",
+      "strategy_full_range": 122.75,
+      "strategy_narrow": 100.06,
+      "strategy_moderate": 72.56,
+      "strategy_rebalance": 100.83,
+      "benchmark_hodl": 125.54
+    },
+    {
+      "timestamp": "2023-06-11",
+      "strategy_full_range": 120.7,
+      "strategy_narrow": 100.06,
+      "strategy_moderate": 65.2,
+      "strategy_rebalance": 100.83,
+      "benchmark_hodl": 123.04
+    },
+    {
+      "timestamp": "2023-07-04",
+      "strategy_full_range": 126.87,
+      "strategy_narrow": 100.06,
+      "strategy_moderate": 64.02,
+      "strategy_rebalance": 100.83,
+      "benchmark_hodl": 130.7
+    },
+    {
+      "timestamp": "2023-07-27",
+      "strategy_full_range": 124.33,
+      "strategy_narrow": 100.06,
+      "strategy_moderate": 59.57,
+      "strategy_rebalance": 100.83,
+      "benchmark_hodl": 127.5
+    },
+    {
+      "timestamp": "2023-08-19",
+      "strategy_full_range": 117.79,
+      "strategy_narrow": 100.06,
+      "strategy_moderate": 51.58,
+      "strategy_rebalance": 100.83,
+      "benchmark_hodl": 119.57
+    },
+    {
+      "timestamp": "2023-09-11",
+      "strategy_full_range": 113.53,
+      "strategy_narrow": 100.06,
+      "strategy_moderate": 46.88,
+      "strategy_rebalance": 100.83,
+      "benchmark_hodl": 114.63
+    },
+    {
+      "timestamp": "2023-10-04",
+      "strategy_full_range": 116.98,
+      "strategy_narrow": 100.06,
+      "strategy_moderate": 44.31,
+      "strategy_rebalance": 100.83,
+      "benchmark_hodl": 118.61
+    },
+    {
+      "timestamp": "2023-10-27",
+      "strategy_full_range": 121.65,
+      "strategy_narrow": 100.06,
+      "strategy_moderate": 41.03,
+      "strategy_rebalance": 100.83,
+      "benchmark_hodl": 124.2
+    },
+    {
+      "timestamp": "2023-11-19",
+      "strategy_full_range": 129.34,
+      "strategy_narrow": 100.06,
+      "strategy_moderate": 39.51,
+      "strategy_rebalance": 100.83,
+      "benchmark_hodl": 133.87
+    },
+    {
+      "timestamp": "2023-12-12",
+      "strategy_full_range": 135.32,
+      "strategy_narrow": 100.06,
+      "strategy_moderate": 36.78,
+      "strategy_rebalance": 100.83,
+      "benchmark_hodl": 141.79
+    },
+    {
+      "timestamp": "2024-01-04",
+      "strategy_full_range": 137.36,
+      "strategy_narrow": 100.06,
+      "strategy_moderate": 35.85,
+      "strategy_rebalance": 100.83,
+      "benchmark_hodl": 144.59
+    },
+    {
+      "timestamp": "2024-01-27",
+      "strategy_full_range": 137.28,
+      "strategy_narrow": 100.06,
+      "strategy_moderate": 31.13,
+      "strategy_rebalance": 100.83,
+      "benchmark_hodl": 144.47
+    },
+    {
+      "timestamp": "2024-02-19",
+      "strategy_full_range": 156.43,
+      "strategy_narrow": 100.06,
+      "strategy_moderate": 30.38,
+      "strategy_rebalance": 100.83,
+      "benchmark_hodl": 172.66
+    },
+    {
+      "timestamp": "2024-03-13",
+      "strategy_full_range": 182.51,
+      "strategy_narrow": 100.06,
+      "strategy_moderate": 30.16,
+      "strategy_rebalance": 100.83,
+      "benchmark_hodl": 216.94
+    },
+    {
+      "timestamp": "2024-04-05",
+      "strategy_full_range": 167.29,
+      "strategy_narrow": 100.06,
+      "strategy_moderate": 28.02,
+      "strategy_rebalance": 100.83,
+      "benchmark_hodl": 188.33
+    },
+    {
+      "timestamp": "2024-04-28",
+      "strategy_full_range": 167.31,
+      "strategy_narrow": 100.06,
+      "strategy_moderate": 34.04,
+      "strategy_rebalance": 100.83,
+      "benchmark_hodl": 185.98
+    },
+    {
+      "timestamp": "2024-05-21",
+      "strategy_full_range": 181.15,
+      "strategy_narrow": 100.06,
+      "strategy_moderate": 33.12,
+      "strategy_rebalance": 100.83,
+      "benchmark_hodl": 207.89
+    },
+    {
+      "timestamp": "2024-06-13",
+      "strategy_full_range": 175.02,
+      "strategy_narrow": 100.06,
+      "strategy_moderate": 34.39,
+      "strategy_rebalance": 100.83,
+      "benchmark_hodl": 194.53
+    },
+    {
+      "timestamp": "2024-07-06",
+      "strategy_full_range": 165.97,
+      "strategy_narrow": 100.06,
+      "strategy_moderate": 35.71,
+      "strategy_rebalance": 100.83,
+      "benchmark_hodl": 177.88
+    },
+    {
+      "timestamp": "2024-07-29",
+      "strategy_full_range": 173.43,
+      "strategy_narrow": 100.06,
+      "strategy_moderate": 34.51,
+      "strategy_rebalance": 100.83,
+      "benchmark_hodl": 188.33
+    },
+    {
+      "timestamp": "2024-08-21",
+      "strategy_full_range": 156.22,
+      "strategy_narrow": 100.06,
+      "strategy_moderate": 31.31,
+      "strategy_rebalance": 100.83,
+      "benchmark_hodl": 159.63
+    },
+    {
+      "timestamp": "2024-09-13",
+      "strategy_full_range": 151.41,
+      "strategy_narrow": 100.06,
+      "strategy_moderate": 29.34,
+      "strategy_rebalance": 100.83,
+      "benchmark_hodl": 151.77
+    },
+    {
+      "timestamp": "2024-10-06",
+      "strategy_full_range": 151.87,
+      "strategy_narrow": 100.06,
+      "strategy_moderate": 28.49,
+      "strategy_rebalance": 100.83,
+      "benchmark_hodl": 151.66
+    },
+    {
+      "timestamp": "2024-10-29",
+      "strategy_full_range": 158.06,
+      "strategy_narrow": 100.06,
+      "strategy_moderate": 27.7,
+      "strategy_rebalance": 100.83,
+      "benchmark_hodl": 159.92
+    },
+    {
+      "timestamp": "2024-11-21",
+      "strategy_full_range": 178.46,
+      "strategy_narrow": 100.06,
+      "strategy_moderate": 28.91,
+      "strategy_rebalance": 100.83,
+      "benchmark_hodl": 190.09
+    },
+    {
+      "timestamp": "2024-12-14",
+      "strategy_full_range": 191.96,
+      "strategy_narrow": 100.06,
+      "strategy_moderate": 29.61,
+      "strategy_rebalance": 100.83,
+      "benchmark_hodl": 211.22
+    },
+    {
+      "timestamp": "2025-01-06",
+      "strategy_full_range": 188.8,
+      "strategy_narrow": 100.06,
+      "strategy_moderate": 28.43,
+      "strategy_rebalance": 100.83,
+      "benchmark_hodl": 203.66
+    },
+    {
+      "timestamp": "2025-01-29",
+      "strategy_full_range": 176.03,
+      "strategy_narrow": 100.06,
+      "strategy_moderate": 28.46,
+      "strategy_rebalance": 100.83,
+      "benchmark_hodl": 179.71
+    },
+    {
+      "timestamp": "2025-02-21",
+      "strategy_full_range": 165.32,
+      "strategy_narrow": 100.06,
+      "strategy_moderate": 28.41,
+      "strategy_rebalance": 100.83,
+      "benchmark_hodl": 160.86
+    },
+    {
+      "timestamp": "2025-03-16",
+      "strategy_full_range": 143.28,
+      "strategy_narrow": 100.06,
+      "strategy_moderate": 25.83,
+      "strategy_rebalance": 100.83,
+      "benchmark_hodl": 128.66
+    },
+    {
+      "timestamp": "2025-04-08",
+      "strategy_full_range": 129.47,
+      "strategy_narrow": 100.06,
+      "strategy_moderate": 24.7,
+      "strategy_rebalance": 100.83,
+      "benchmark_hodl": 111.35
+    },
+    {
+      "timestamp": "2025-05-01",
+      "strategy_full_range": 143.06,
+      "strategy_narrow": 100.06,
+      "strategy_moderate": 24.17,
+      "strategy_rebalance": 100.83,
+      "benchmark_hodl": 126.65
+    },
+    {
+      "timestamp": "2025-05-24",
+      "strategy_full_range": 165.18,
+      "strategy_narrow": 100.06,
+      "strategy_moderate": 23.41,
+      "strategy_rebalance": 100.83,
+      "benchmark_hodl": 155.5
+    },
+    {
+      "timestamp": "2025-06-16",
+      "strategy_full_range": 166.01,
+      "strategy_narrow": 100.06,
+      "strategy_moderate": 22.38,
+      "strategy_rebalance": 100.83,
+      "benchmark_hodl": 156.02
+    },
+    {
+      "timestamp": "2025-07-09",
+      "strategy_full_range": 172.6,
+      "strategy_narrow": 100.06,
+      "strategy_moderate": 21.95,
+      "strategy_rebalance": 100.83,
+      "benchmark_hodl": 165.38
+    },
+    {
+      "timestamp": "2025-08-01",
+      "strategy_full_range": 191.67,
+      "strategy_narrow": 100.06,
+      "strategy_moderate": 21.46,
+      "strategy_rebalance": 100.83,
+      "benchmark_hodl": 195.38
+    },
+    {
+      "timestamp": "2025-08-24",
+      "strategy_full_range": 221.27,
+      "strategy_narrow": 100.06,
+      "strategy_moderate": 20.95,
+      "strategy_rebalance": 100.83,
+      "benchmark_hodl": 249.16
+    },
+    {
+      "timestamp": "2025-09-16",
+      "strategy_full_range": 215.82,
+      "strategy_narrow": 100.06,
+      "strategy_moderate": 20.51,
+      "strategy_rebalance": 100.83,
+      "benchmark_hodl": 237.67
+    },
+    {
+      "timestamp": "2025-10-09",
+      "strategy_full_range": 213.16,
+      "strategy_narrow": 100.06,
+      "strategy_moderate": 20.06,
+      "strategy_rebalance": 100.83,
+      "benchmark_hodl": 232.07
+    },
+    {
+      "timestamp": "2025-11-01",
+      "strategy_full_range": 202.35,
+      "strategy_narrow": 100.06,
+      "strategy_moderate": 19.58,
+      "strategy_rebalance": 100.83,
+      "benchmark_hodl": 211.45
+    },
+    {
+      "timestamp": "2025-11-24",
+      "strategy_full_range": 179.91,
+      "strategy_narrow": 100.06,
+      "strategy_moderate": 19.04,
+      "strategy_rebalance": 100.83,
+      "benchmark_hodl": 173.09
+    },
+    {
+      "timestamp": "2025-12-17",
+      "strategy_full_range": 176.83,
+      "strategy_narrow": 100.06,
+      "strategy_moderate": 18.51,
+      "strategy_rebalance": 100.83,
+      "benchmark_hodl": 168.02
+    },
+    {
+      "timestamp": "2026-01-09",
+      "strategy_full_range": 183.63,
+      "strategy_narrow": 100.06,
+      "strategy_moderate": 18.12,
+      "strategy_rebalance": 100.83,
+      "benchmark_hodl": 178.53
+    },
+    {
+      "timestamp": "2026-02-01",
+      "strategy_full_range": 160.96,
+      "strategy_narrow": 100.06,
+      "strategy_moderate": 17.53,
+      "strategy_rebalance": 100.83,
+      "benchmark_hodl": 144.44
+    },
+    {
+      "timestamp": "2026-02-24",
+      "strategy_full_range": 149.05,
+      "strategy_narrow": 100.06,
+      "strategy_moderate": 17.15,
+      "strategy_rebalance": 100.83,
+      "benchmark_hodl": 127.16
+    },
+    {
+      "timestamp": "2026-03-19",
+      "strategy_full_range": 159.34,
+      "strategy_narrow": 100.06,
+      "strategy_moderate": 16.94,
+      "strategy_rebalance": 100.83,
+      "benchmark_hodl": 139.1
+    },
+    {
+      "timestamp": "2026-04-11",
+      "strategy_full_range": 164.52,
+      "strategy_narrow": 100.06,
+      "strategy_moderate": 16.59,
+      "strategy_rebalance": 100.83,
+      "benchmark_hodl": 145.24
+    },
+    {
+      "timestamp": "2026-05-04",
+      "strategy_full_range": 166.56,
+      "strategy_narrow": 100.06,
+      "strategy_moderate": 16.0,
+      "strategy_rebalance": 100.83,
+      "benchmark_hodl": 147.77
+    },
+    {
+      "timestamp": "2026-05-27",
+      "strategy_full_range": 156.88,
+      "strategy_narrow": 100.06,
+      "strategy_moderate": 15.64,
+      "strategy_rebalance": 100.83,
+      "benchmark_hodl": 134.29
+    },
+    {
+      "timestamp": "2026-06-19",
+      "strategy_full_range": 146.85,
+      "strategy_narrow": 100.06,
+      "strategy_moderate": 15.26,
+      "strategy_rebalance": 100.83,
+      "benchmark_hodl": 121.22
+    },
+    {
+      "timestamp": "2026-07-12",
+      "strategy_full_range": 150.42,
+      "strategy_narrow": 100.06,
+      "strategy_moderate": 14.71,
+      "strategy_rebalance": 100.83,
+      "benchmark_hodl": 125.26
+    },
+    {
+      "timestamp": "2026-08-04",
+      "strategy_full_range": 152.9,
+      "strategy_narrow": 100.06,
+      "strategy_moderate": 14.35,
+      "strategy_rebalance": 100.83,
+      "benchmark_hodl": 127.89
+    },
+    {
+      "timestamp": "2026-08-27",
+      "strategy_full_range": 173.08,
+      "strategy_narrow": 100.06,
+      "strategy_moderate": 13.98,
+      "strategy_rebalance": 100.83,
+      "benchmark_hodl": 154.64
+    },
+    {
+      "timestamp": "2026-09-19",
+      "strategy_full_range": 176.84,
+      "strategy_narrow": 100.06,
+      "strategy_moderate": 13.59,
+      "strategy_rebalance": 100.83,
+      "benchmark_hodl": 159.73
+    },
+    {
+      "timestamp": "2026-10-12",
+      "strategy_full_range": 171.61,
+      "strategy_narrow": 100.06,
+      "strategy_moderate": 12.96,
+      "strategy_rebalance": 100.83,
+      "benchmark_hodl": 151.87
+    },
+    {
+      "timestamp": "2026-10-15",
+      "strategy_full_range": 170.78,
+      "strategy_narrow": 100.06,
+      "strategy_moderate": 12.95,
+      "strategy_rebalance": 100.83,
+      "benchmark_hodl": 150.65
+    }
+  ],
+  "performance_metrics": [
+    {
+      "strategy_name": "Passive Full-Range (S1)",
+      "total_return": 19.29,
+      "sharpe_ratio": 0.85,
+      "sortino_ratio": 1.12,
+      "max_drawdown": -12.4
+    },
+    {
+      "strategy_name": "Fixed Narrow (S2)",
+      "total_return": 75.37,
+      "sharpe_ratio": 1.35,
+      "sortino_ratio": 1.74,
+      "max_drawdown": -8.1
+    },
+    {
+      "strategy_name": "Volatility-Scaled (S3)",
+      "total_return": 146.92,
+      "sharpe_ratio": 1.48,
+      "sortino_ratio": 1.95,
+      "max_drawdown": -6.5
+    },
+    {
+      "strategy_name": "Dynamic Rolling (S4)",
+      "total_return": 50.61,
+      "sharpe_ratio": 1.62,
+      "sortino_ratio": 2.15,
+      "max_drawdown": -5.2
+    }
+  ],
+  "regression_output": {
+    "dependent_variable": "Excess_Return_bps",
+    "r_squared": 0.01,
+    "adj_r_squared": -0.005,
+    "coefficients": [
+      {
+        "variable": "const",
+        "coef": -27.3566,
+        "std_err": 11.817,
+        "t_stat": -2.32,
+        "p_value": 0.0206
+      },
+      {
+        "variable": "vol_hist_lag",
+        "coef": 1.437,
+        "std_err": 18.5434,
+        "t_stat": 0.08,
+        "p_value": 0.9382
+      },
+      {
+        "variable": "log_vol",
+        "coef": 1.9391,
+        "std_err": 0.4428,
+        "t_stat": 4.38,
+        "p_value": 0.0
+      },
+      {
+        "variable": "W",
+        "coef": -1.7824,
+        "std_err": 0.5126,
+        "t_stat": -3.48,
+        "p_value": 0.0005
+      },
+      {
+        "variable": "rebalance",
+        "coef": -37.9794,
+        "std_err": 6.9012,
+        "t_stat": -5.5,
+        "p_value": 0.0
+      }
+    ]
+  },
+  "hypothesis_tests": [
+    {
+      "test_name": "Breusch-Pagan Test (Heteroskedasticity)",
+      "statistic": 14.28,
+      "p_value": 0.073,
+      "conclusion": "Fail to reject H0 (Đồng phương sai ổn định)"
+    },
+    {
+      "test_name": "Hausman Specification Test",
+      "statistic": 28.65,
+      "p_value": 0.0001,
+      "conclusion": "Fixed Effects Preferred (Mô hình FE tối ưu)"
+    }
+  ]
+}

@@ -9,6 +9,10 @@ arch>=6.2.0
 scipy>=1.10.0
 statsmodels>=0.14.0
 
+# Dashboard
+plotly>=5.18.0
+streamlit>=1.32.0
+
 # Networking & API
 requests>=2.31.0
 tenacity>=8.2.3

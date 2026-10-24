@@ -1,0 +1,88 @@
+{
+  "pool_id": "ETH-USDC-0.05",
+  "optimal_range": {
+    "price_min": 1880.0,
+    "price_max": 3099.51,
+    "current_price": 2415.21,
+    "recommended_width_percent": 50.0
+  },
+  "cvar_metrics": {
+    "confidence_level": 0.95,
+    "var_95": -0.02,
+    "cvar_95": -0.02
+  },
+  "monte_carlo_distribution": [
+    {
+      "return_bin": "< -15%",
+      "frequency": 120
+    },
+    {
+      "return_bin": "-15% to -10%",
+      "frequency": 350
+    },
+    {
+      "return_bin": "-10% to -5%",
+      "frequency": 680
+    },
+    {
+      "return_bin": "-5% to 0%",
+      "frequency": 1150
+    },
+    {
+      "return_bin": "0% to 5%",
+      "frequency": 1620
+    },
+    {
+      "return_bin": "5% to 10%",
+      "frequency": 820
+    },
+    {
+      "return_bin": "> 10%",
+      "frequency": 260
+    }
+  ],
+  "efficient_frontier": [
+    {
+      "risk_cvar": 9.18,
+      "expected_return": -2.35,
+      "p_min": 2389.92,
+      "p_max": 2438.19
+    },
+    {
+      "risk_cvar": 8.51,
+      "expected_return": -1.12,
+      "p_min": 2354.34,
+      "p_max": 2475.04
+    },
+    {
+      "risk_cvar": 7.48,
+      "expected_return": 0.41,
+      "p_min": 2296.21,
+      "p_max": 2537.69
+    },
+    {
+      "risk_cvar": 6.46,
+      "expected_return": 1.45,
+      "p_min": 2239.52,
+      "p_max": 2601.93
+    },
+    {
+      "risk_cvar": 5.36,
+      "expected_return": 2.14,
+      "p_min": 2184.23,
+      "p_max": 2667.8
+    },
+    {
+      "risk_cvar": 3.11,
+      "expected_return": 2.88,
+      "p_min": 2077.71,
+      "p_max": 2804.57
+    },
+    {
+      "risk_cvar": 0.02,
+      "expected_return": 3.4,
+      "p_min": 1880.0,
+      "p_max": 3099.51
+    }
+  ]
+}

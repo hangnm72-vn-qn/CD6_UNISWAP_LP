@@ -49,6 +49,10 @@ API nguồn
 | [`src/data/features.py`](src/data/features.py) | Tính biến động, GARCH, chỉ số thanh khoản và chi phí rebalance. |
 | [`src/data/build_dataset.py`](src/data/build_dataset.py) | Kết nối các bước xử lý, xuất dữ liệu từng pool, panel tổng hợp và CSV preview. |
 | [`src/data/validate_processed.py`](src/data/validate_processed.py) | Kiểm tra schema, timestamp, khoảng trống, giá trị không hợp lệ, missing và phân phối. |
+| [`src/features/build_features.py`](src/features/build_features.py) | Chuẩn hóa dữ liệu daily, nhận diện pool và bổ sung volume, log return, volatility cho notebook phân tích. |
+| [`src/models/optimizer.py`](src/models/optimizer.py) | Công thức tick/liquidity/range của Uniswap v3, fixed-effects OLS và quantile regression. |
+| [`src/evaluation/backtest.py`](src/evaluation/backtest.py) | Chạy các chiến lược LP, tính metrics và xuất position ledger/decomposition. |
+| [`notebooks/tong_hop.ipynb`](notebooks/tong_hop.ipynb) | Notebook phân tích gọi các module trong `src/`; bảng và biểu đồ được lưu ở `outputs/tables/` và `outputs/figures/` tại thư mục gốc. |
 | [`tests/`](tests/) | Kiểm thử pipeline, feature và một số điều kiện chống look-ahead bias. |
 
 TVL DefiLlama được đưa vào dữ liệu từ ngày kế tiếp ngày ghi nhận nhằm tránh dùng thông tin chưa sẵn có tại thời điểm quan sát. Các nến thiếu hoạt động được đánh dấu `is_filled`; giá được giữ theo quan sát trước đó, còn volume/fees được đặt bằng 0. Outlier được đánh dấu chứ không bị xóa.
@@ -116,6 +120,14 @@ python -m pytest
 ```
 
 Script kiểm định đọc mọi file `*.parquet` trong `data/processed/`, in báo cáo và trả mã thoát khác 0 nếu kiểm định thất bại. Khoảng trống thời gian lớn hơn một giờ và tỷ lệ missing cao được báo cảnh báo; xem chi tiết các cột và nguồn trong [`data/processed/data_dictionary.md`](data/processed/data_dictionary.md).
+
+### 4.5. Chạy dashboard
+
+```powershell
+streamlit run dashboard/app.py
+```
+
+Dashboard đọc dữ liệu daily từ `data/processed/pools_daily.csv`, các bảng JSON từ `outputs/tables/` và ảnh notebook từ `outputs/figures/`. Các đường dẫn được xác định tương đối theo vị trí mã nguồn, không phụ thuộc thư mục hiện hành khi khởi chạy.
 
 ## 5. Đọc và khai thác dữ liệu
 
