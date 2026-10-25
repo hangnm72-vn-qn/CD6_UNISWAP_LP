@@ -1,0 +1,6 @@
+Kịch bản,Mô tả,Net ER (%),Fees ($),Inventory Loss ($),Gas ($),TimeOOR (%)
+SC1_Baseline,Kịch bản cơ sở,-49.81,0.0,4955.57,25.0,99.64
+SC2_Vol_Shock,Cú sốc Biến động (+100%),-92.15,0.0,9167.8,25.0,99.64
+SC3_Volume_Collapse,Suy kiệt Khối lượng (-70%),-52.3,0.0,4955.57,25.0,99.64
+SC4_Gas_Spike,Nghẽn mạng (Gas x5),-51.06,0.0,4955.57,125.0,99.64
+SC5_Depeg_Crash,Đổ vỡ tỷ giá (-20% Crash),-107.09,0.0,10902.25,50.0,99.85

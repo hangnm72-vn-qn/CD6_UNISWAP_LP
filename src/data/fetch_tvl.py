@@ -16,7 +16,7 @@ def fetch_defillama_protocol_tvl(client: NetworkClient, url: str) -> List[Dict[s
     """Tải chuỗi TVL lịch sử của giao thức Uniswap v3 trên DefiLlama."""
     logger.info("Đang gọi DefiLlama API để lấy lịch sử TVL Uniswap v3...")
     data = client.get_rest(url)
-
+    
     # DefiLlama trả về dict chứa tvl theo chain
     tvl_series = data.get("tvl", [])
     chain_tvls = data.get("chainTvls", {})

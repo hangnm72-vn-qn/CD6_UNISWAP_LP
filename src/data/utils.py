@@ -34,7 +34,7 @@ def get_subgraph_url(config: Dict[str, Any]) -> str:
     api_key = os.getenv("GRAPH_API_KEY")
     if not api_key:
         raise ValueError("Biến môi trường GRAPH_API_KEY chưa được thiết lập trong file .env.")
-
+    
     subgraph_id = config["endpoints"]["thegraph_subgraph_id"]
     base_url = config["endpoints"]["thegraph_gateway_url"]
     return base_url.format(api_key=api_key, subgraph_id=subgraph_id)
@@ -60,14 +60,14 @@ class NetworkClient:
 
         headers = {"Content-Type": "application/json", "Accept": "application/json"}
         response = self.session.post(url, json=payload, headers=headers, timeout=self.timeout)
-
+        
         if response.status_code == 429:
             logger.warning("Gặp lỗi Rate Limit (429). Đang chờ trước khi retry...")
             response.raise_for_status()
 
         response.raise_for_status()
         data = response.json()
-
+        
         if "errors" in data:
             raise RuntimeError(f"GraphQL Query Error: {data['errors']}")
         return data.get("data", {})

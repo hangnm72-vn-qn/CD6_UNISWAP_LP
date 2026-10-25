@@ -44,7 +44,7 @@ def calculate_returns_and_realized_vol(
         high_low_ratio = np.log(df["high_clean"] / df["low_clean"].replace(0, np.nan))
         high_low_ratio = high_low_ratio.fillna(0.0)
         parkinson_instant_var = (high_low_ratio ** 2) / (4.0 * np.log(2.0))
-
+        
         # Smooth Parkinson volatility bằng rolling 24h
         df["vol_parkinson_24h"] = np.sqrt(
             parkinson_instant_var.rolling(window=24, min_periods=12).mean() * annualization_factor

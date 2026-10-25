@@ -96,7 +96,7 @@ def fetch_pool_data_paginated(
             "startTime": current_start,
             "first": SUBGRAPH_PAGE_SIZE,
         }
-
+        
         response_data = client.post_graphql(subgraph_url, query, variables)
         records = response_data.get(data_key, [])
 
@@ -124,7 +124,7 @@ def fetch_pool_data_paginated(
 
 
 def run_subgraph_pipeline():
-    """Hàm chạy chính để tải toàn bộ 4 pools và lưu cache thô."""
+    """Hàm chạy chính để tải các pool đã cấu hình và lưu cache thô."""
     config = load_config()
     subgraph_url = get_subgraph_url(config)
     client = NetworkClient()

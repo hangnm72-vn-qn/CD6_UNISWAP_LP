@@ -15,7 +15,7 @@ REQUIRED_COLUMNS = [
 
 def audit_parquet_file(file_path: Path):
     print(f"\n{'='*20} KIỂM TRA FILE: {file_path.name} {'='*20}")
-
+    
     if not file_path.exists():
         print(f"[THẤT BẠI] File không tồn tại: {file_path}")
         return False

@@ -1,0 +1,21 @@
+{
+    "project": "Chủ đề 6: Đánh giá hiệu quả cung cấp thanh khoản tập trung và tối ưu vùng giá Uniswap v3",
+    "dataset_range": "2023-01-01 to 2026-10-15",
+    "pools_analyzed": [
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "P5"
+    ],
+    "strategies": [
+        "S1_FullRange",
+        "S2_FixedSymmetric",
+        "S3_VolatilityScaled",
+        "S4_RollingDynamic"
+    ],
+    "fixed_effects_r2_model1": 0.010450313065099248,
+    "fixed_effects_r2_model2": 0.01050143077066823,
+    "monte_carlo_paths": 5000,
+    "delta_t": "1/24 day (1 hour)"
+}
