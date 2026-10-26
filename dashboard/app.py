@@ -560,10 +560,151 @@ st.markdown(
     .bridge-label {{ font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700; color: var(--accent); letter-spacing: 0.6px; }}
     .bridge-text {{ font-size: 14.5px; color: var(--dashboard-text, {text_main}); line-height: 1.55; margin-top: 2px; }}
 
+
+    /* App theme owns native controls as well as custom cards. */
+    :root {{ color-scheme: {"dark" if is_dark else "light"}; }}
+    [data-testid="stAppViewContainer"] {{ background: var(--dashboard-background) !important; }}
+    [data-testid="stSelectbox"] [data-baseweb="select"] > div,
+    [data-testid="stMultiSelect"] [data-baseweb="select"] > div,
+    [data-testid="stTextInput"] [data-baseweb="input"],
+    [data-testid="stNumberInput"] [data-baseweb="input"],
+    [data-testid="stDateInput"] [data-baseweb="input"],
+    [data-testid="stTimeInput"] [data-baseweb="select"] > div,
+    [data-baseweb="base-input"], [data-testid="stTextArea"] textarea {{
+        background: var(--dashboard-input) !important;
+        color: var(--dashboard-text) !important;
+        border-color: var(--dashboard-border) !important;
+    }}
+    input, textarea {{ color: var(--dashboard-text) !important;
+        -webkit-text-fill-color: var(--dashboard-text) !important; }}
+    input::placeholder, textarea::placeholder {{
+        color: var(--dashboard-muted) !important;
+        -webkit-text-fill-color: var(--dashboard-muted) !important;
+    }}
+    [data-testid="stExpander"] details {{
+        background: var(--dashboard-surface) !important;
+        color: var(--dashboard-text) !important;
+        border: 1px solid var(--dashboard-border) !important;
+        border-radius: 12px;
+    }}
+    [data-testid="stExpander"] summary,
+    [data-testid="stExpander"] summary:hover {{
+        background: var(--dashboard-table-head) !important;
+        color: var(--dashboard-text) !important;
+    }}
+    [data-testid="stExpander"] summary p,
+    [data-testid="stExpander"] summary span,
+    [data-testid="stExpander"] summary svg {{ color: var(--dashboard-text) !important; }}
+    [data-testid="stExpanderDetails"] {{
+        background: var(--dashboard-surface) !important;
+        color: var(--dashboard-text) !important;
+    }}
+    [data-baseweb="popover"] > div,
+    [data-baseweb="menu"], [role="listbox"],
+    [data-baseweb="calendar"], [data-baseweb="calendar"] > div {{
+        background: var(--dashboard-surface) !important;
+        color: var(--dashboard-text) !important;
+    }}
+    [role="option"], [data-baseweb="calendar"] button,
+    [data-baseweb="calendar"] [role="gridcell"] {{ color: var(--dashboard-text) !important; }}
+    [role="option"]:hover, [role="option"][aria-selected="true"] {{
+        background: var(--dashboard-input) !important;
+    }}
+    [data-baseweb="calendar"] [aria-selected="true"] {{
+        background: #2563eb !important; color: #ffffff !important;
+    }}
+    .dashboard-data-table {{ overflow: auto; max-height: 500px;
+        border: 1px solid var(--dashboard-border); border-radius: 10px; }}
+    .dashboard-data-table table {{ width: 100%; border-collapse: collapse;
+        background: var(--dashboard-surface); color: var(--dashboard-text); font-size: 14px; }}
+    .dashboard-data-table th {{ background: var(--dashboard-table-head);
+        color: var(--dashboard-muted); position: sticky; top: 0; z-index: 1; }}
+    .dashboard-data-table td, .dashboard-data-table th {{ padding: 10px 14px;
+        border: 1px solid var(--dashboard-border); white-space: nowrap; text-align: right; }}
+    .dashboard-data-table tbody tr:nth-child(even) {{ background: {table_row_alt}; }}
+    .dashboard-data-table tbody tr:hover {{ background: {table_row_hover}; }}
+
+
+    /* Streamlit React Aria controls (new), alongside BaseWeb controls (old). */
+    [data-testid="stSelectbox"] div:has(> input),
+    [data-testid="stSelectbox"] [role="group"],
+    [data-testid="stMultiSelect"] div:has(> input),
+    [data-testid="stDateInputField"],
+    [data-testid="stDateInput"] [role="group"],
+    [data-testid="stTimeInput"] div:has(> input) {{
+        background: var(--dashboard-input) !important;
+        color: var(--dashboard-text) !important;
+        border-color: var(--dashboard-border) !important;
+        color-scheme: {"dark" if is_dark else "light"};
+    }}
+    [data-testid="stSelectbox"] input,
+    [data-testid="stDateInputField"] *,
+    [data-testid="stDateInput"] [role="spinbutton"] {{
+        color: var(--dashboard-text) !important;
+        -webkit-text-fill-color: var(--dashboard-text) !important;
+    }}
+    [data-testid="stSelectbox"] input,
+    [data-testid="stDateInputField"] [role="group"],
+    [data-testid="stDateInputField"] button {{ background: transparent !important; }}
+    [data-testid="stSelectboxVirtualDropdown"],
+    [data-testid="stDateInputCalendar"],
+    [data-testid="stDateInputQuickSelectPopover"],
+    [data-testid="stDateInputHeaderPickerPopover"] {{
+        background: var(--dashboard-surface) !important;
+        color: var(--dashboard-text) !important;
+        border: 1px solid var(--dashboard-border) !important;
+        color-scheme: {"dark" if is_dark else "light"};
+    }}
+    [data-testid="stDateInputCalendar"] [role="gridcell"],
+    [data-testid="stDateInputCalendar"] button,
+    [data-testid="stDateInputCalendar"] h2 {{
+        color: var(--dashboard-text) !important;
+        -webkit-text-fill-color: var(--dashboard-text) !important;
+    }}
+    [data-testid="stSelectboxVirtualDropdown"] [role="option"][data-focused],
+    [data-testid="stSelectboxVirtualDropdown"] [role="option"][data-selected] {{
+        background: var(--dashboard-input) !important;
+        color: var(--dashboard-text) !important;
+    }}
+
+
+    /* Stable accents: no moving cards or replayed entrance animations. */
+    :root {{ --ui-accent: {NAV_COLORS[st.session_state.page]}; }}
+    .stApp {{ background-image: radial-gradient(ellipse at top left,
+        {"#2563eb18" if is_dark else "#2563eb09"}, transparent 60%) !important; }}
+    .section-header {{ background-image: linear-gradient(110deg,
+        color-mix(in srgb, var(--accent) 8%, transparent), transparent 70%); }}
+    .kpi-card-saas, .pool-chip, [data-testid="stPlotlyChart"] {{
+        transition: border-color 160ms ease, box-shadow 160ms ease;
+    }}
+    .kpi-card-saas:hover, .pool-chip:hover {{
+        border-color: var(--pool, var(--c, var(--ui-accent))) !important;
+        box-shadow: 0 4px 16px {"#00000030" if is_dark else "#1e3a8a12"};
+    }}
+    [data-testid="stPlotlyChart"] {{ border-top: 3px solid var(--ui-accent); }}
+    [data-testid="stPlotlyChart"]:hover {{
+        border-color: var(--ui-accent);
+        box-shadow: 0 4px 18px {"#00000030" if is_dark else "#1e3a8a12"};
+    }}
+    [data-testid="stPlotlyChart"] .modebar {{ background: var(--dashboard-surface) !important; border-radius: 6px; }}
+    @media (prefers-reduced-motion: reduce) {{
+        .kpi-card-saas, .pool-chip, [data-testid="stPlotlyChart"] {{ transition: none; }}
+    }}
+
     </style>
     """,
     unsafe_allow_html=True,
 )
+
+def render_themed_dataframe(frame):
+    """Scrollable, escaped appendix table following the app theme."""
+    st.markdown(
+        '<div class="dashboard-data-table">'
+        + frame.to_html(index=True, border=0, escape=True)
+        + '</div>',
+        unsafe_allow_html=True,
+    )
+
 
 # NÚT THEME
 st.button(toggle_label, key="theme_toggle", on_click=toggle_theme)
@@ -645,6 +786,8 @@ def research_table(df, accent, target_pool_name=None):
 def style_fig(fig, title, line_color=None):
     fig.update_layout(
         template=plotly_template,
+        colorway=["#2563eb", "#14b8a6", "#8b5cf6", "#f59e0b", "#f43f5e"],
+        dragmode="zoom",
         paper_bgcolor=bg_card,
         plot_bgcolor=bg_card,
         font=dict(family="Inter, sans-serif", color=text_main, size=12),
@@ -679,6 +822,31 @@ def style_fig(fig, title, line_color=None):
             if hasattr(trace, "line") and trace.type == "scatter"
             else None
         )
+    # Shared time-series hover is useful only when X is a time axis.
+    # The risk/return frontier and categorical bars need individual tooltips.
+    import datetime as _dt
+    line_traces = [t for t in fig.data if t.type == "scatter" and "lines" in (t.mode or "lines")]
+    def _time_x(trace):
+        values = trace.x
+        if values is None or len(values) == 0:
+            return False
+        if getattr(getattr(values, "dtype", None), "kind", None) == "M":
+            return True
+        first = next((v for v in values if v is not None), None)
+        return isinstance(first, (_dt.date, _dt.datetime, pd.Timestamp)) or (
+            isinstance(first, str) and len(first) >= 10
+            and first[4:5] == "-" and first[7:8] == "-"
+        )
+    time_series = bool(line_traces) and all(_time_x(t) for t in line_traces)
+    fig.update_layout(hovermode="x unified" if time_series else "closest")
+    if time_series:
+        fig.update_xaxes(showspikes=True, spikemode="across", spikesnap="data",
+                         spikecolor=border_color, spikethickness=1, spikedash="dot")
+        fig.update_yaxes(showspikes=False)
+    # HODL uses a dark fixed colour in the source: make it legible on dark cards.
+    for trace in fig.data:
+        if trace.type == "scatter" and "HODL" in (trace.name or "").upper():
+            trace.line.color = "#e2e8f0" if is_dark else "#334155"
     return fig
 
 
@@ -691,6 +859,9 @@ def render_output_figure(filename, caption):
 
 PLOT_CONFIG = {
     "displaylogo": False,
+    "responsive": True,
+    "scrollZoom": False,
+    "doubleClick": "reset",
     "modeBarButtonsToRemove": ["lasso2d", "select2d"],
 }
 
@@ -800,7 +971,7 @@ def render_appendix():
             with st.expander(f"📁 {title} ({filename})", expanded=False):
                 try:
                     df_table_csv = pd.read_csv(file_path)
-                    st.dataframe(df_table_csv, use_container_width=True)
+                    render_themed_dataframe(df_table_csv)
                     
                     csv_bytes = df_table_csv.to_csv(index=False).encode("utf-8")
                     st.download_button(
@@ -842,13 +1013,13 @@ def render_appendix():
         st.success(f"✅ Đã hoàn tất tính toán và lưu kết quả mới! Panel OLS $R^2$ = {ols_model.rsquared:.4f}")
         
         st.write("**1. Chỉ số hiệu suất Backtest tổng hợp:**")
-        st.dataframe(metrics, use_container_width=True)
+        render_themed_dataframe(metrics)
         
         st.write("**2. Kết quả Panel Fixed-Effects Regression:**")
-        st.dataframe(panel_results, use_container_width=True)
+        render_themed_dataframe(panel_results)
         
         st.write("**3. Kết quả Quantile Regression:**")
-        st.dataframe(quantile_results, use_container_width=True)
+        render_themed_dataframe(quantile_results)
 # ---------------------------------------------------------
 # 6. ĐỊNH TUYẾN TRANG THEO NÚT Ở SIDEBAR
 # ---------------------------------------------------------
