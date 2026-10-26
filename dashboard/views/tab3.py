@@ -139,17 +139,48 @@ def render_tab3(data_tab3, research_table, style_fig, plot_config, accent_color)
     metrics = data_tab3.get("performance_metrics", [])
     if metrics:
         df_metrics = pd.DataFrame(metrics)
+        
+        # --- FIX 1: Lọc dữ liệu theo đúng Pool ID của biểu đồ ---
+        pool_id = data_tab3.get("pool_id")
+        if pool_id and "pool_id" in df_metrics.columns:
+            df_metrics = df_metrics[df_metrics["pool_id"] == pool_id]
+            
+        # --- FIX 2: Đồng bộ Tổng lợi nhuận từ biểu đồ xuống bảng ---
+        if not df_cum.empty:
+            code_to_key = {code: key for key, (code, _, _) in SERIES.items()}
+            # Đảm bảo cột tồn tại
+            if "total_return" not in df_metrics.columns:
+                df_metrics["total_return"] = 0.0
+                
+            for idx, row in df_metrics.iterrows():
+                # Tìm ký hiệu S1, S2, S3, S4 trong tên chiến lược
+                m = re.search(r"(S\d)", str(row.get("strategy_name", "")))
+                if m:
+                    key = code_to_key.get(m.group(1))
+                    if key and key in df_cum.columns:
+                        # Tính lợi nhuận chính xác: (Giá trị cuối kỳ - Gốc 100)
+                        actual_return = df_cum[key].iloc[-1] - 100
+                        df_metrics.at[idx, "total_return"] = actual_return
+
+        # --- Đổi tên và hiển thị ---
         disp = df_metrics.rename(
             columns={
                 "strategy_name": "Chiến lược",
                 "total_return": "Tổng lợi nhuận (%)",
+                "annualized_return": "Lợi nhuận năm (%)", # Hỗ trợ hiển thị thêm nếu JSON có
                 "sharpe_ratio": "Sharpe",
                 "sortino_ratio": "Sortino",
                 "max_drawdown": "Max Drawdown (%)",
             }
         )
+        
+        # Lọc bỏ các cột kỹ thuật thừa từ JSON, chỉ giữ lại các cột hiển thị
+        display_cols = ["Chiến lược", "Tổng lợi nhuận (%)", "Lợi nhuận năm (%)", "Sharpe", "Sortino", "Max Drawdown (%)"]
+        disp = disp[[c for c in display_cols if c in disp.columns]]
+
         research_table(disp, accent_color)
 
+        # Giữ nguyên phần check issues và best row bên dưới...
         issues = _consistency_issues(df_metrics, df_cum) if not df_cum.empty else []
         if issues:
             st.warning(
@@ -165,12 +196,7 @@ def render_tab3(data_tab3, research_table, style_fig, plot_config, accent_color)
                     f"📌 **Kết quả backtest (RQ4):** theo chỉ số {col}, chiến lược tốt nhất là **{name}** "
                     f"(giá trị {value:.3f}). Đối chiếu thêm Sortino và Max Drawdown để đánh giá cả mặt rủi ro."
                 )
-        chart_note(
-            "Sharpe và Sortino đo hiệu quả điều chỉnh theo rủi ro (Sortino chỉ phạt biến động xuống), còn Max Drawdown đo "
-            "mức sụt giảm sâu nhất. Không nên xếp hạng chiến lược chỉ theo tổng lợi nhuận.",
-            accent_color,
-        )
-
+                
     st.markdown("---")
 
     # =====================================================

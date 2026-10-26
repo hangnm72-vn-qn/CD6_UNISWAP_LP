@@ -23,7 +23,7 @@ from src.features.build_features import (
     ensure_market_features,
     prepare_daily_data,
 )
-from src.models.optimizer import run_regressions
+#from src.models.optimizer import run_regressions
 from src.evaluation.backtest import export_backtest_results, run_backtest
 
 # ---------------------------------------------------------
@@ -180,7 +180,7 @@ NAV_ITEMS = {
     2: "02 · Phân rã Lợi nhuận",
     3: "03 · Chiến lược & Kinh tế lượng",
     4: "04 · Tối ưu Dải giá",
-    5: "📎 Phụ lục",
+    5: "Phụ lục",
 }
 NAV_COLORS = {**TAB_ACTIVE_COLORS, 5: "#475569"}
 
@@ -605,6 +605,18 @@ for _i, _label in NAV_ITEMS.items():
         use_container_width=True,
     )
 
+# --- BỔ SUNG TUYÊN BỐ MIỄN TRỪ TRÁCH NHIỆM (MỤC 4.3 BLUEPRINT) ---
+st.sidebar.markdown("---")
+st.sidebar.markdown(
+    """
+    <div style="font-size: 11.5px; color: #94a3b8; line-height: 1.4; padding: 4px 2px;">
+        <b>⚠️ Tuyên bố miễn trừ:</b><br>
+        Đây là công cụ mô phỏng nghiên cứu (Research Simulator), không phải là khuyến nghị hay lời khuyên đầu tư tài chính (Not financial advice).
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
+
 
 # ---------------------------------------------------------
 # 5. HÀM HELPER VẼ BẢNG VÀ BIỂU ĐỒ
@@ -703,43 +715,140 @@ def render_appendix():
     section_header(
         "PHỤ LỤC",
         "APPENDIX",
-        "Hình xuất từ Notebook & Công cụ Tính lại",
-        "Tài liệu bổ trợ cho các tab phân tích: hình gốc xuất từ notebook và công cụ chạy lại backtest, hồi quy từ dữ liệu đã xử lý.",
+        "Hệ thống Bảng số liệu & Hình ảnh Nghiên cứu",
+        "Tổng hợp toàn bộ các bảng dữ liệu định lượng (Bảng 4.1 đến 4.12) và hình ảnh xuất từ pipeline nghiên cứu, "
+        "phục vụ đối chiếu chi tiết và tái lập kết quả backtest, kinh tế lượng.",
         accent,
+        question="Toàn bộ dữ liệu chi tiết của các chương nghiên cứu được lưu trữ và tra cứu như thế nào?",
     )
 
-    step_heading("PHỤ LỤC A", "Hình xuất từ notebook", accent, "Ảnh gốc phục vụ đối chiếu với kết quả ở Tab 02 và Tab 03.")
-    render_output_figure(
-        "figure_4_3_decomposition.png",
-        "Phân rã lợi nhuận (Figure 4.3) · liên quan Tab 02",
+    # Khai báo base_dirs ở ngay đầu hàm để dùng chung cho cả Phụ lục A, B và C
+    base_dirs = [Path.cwd(), PROJECT_ROOT, PROJECT_ROOT.parent]
+
+   # =====================================================
+    # PHỤ LỤC A: HÌNH ẢNH TRỰC QUAN GỐC
+    # =====================================================
+    step_heading(
+        "PHỤ LỤC A",
+        "Hình ảnh trực quan xuất từ Pipeline",
+        accent,
+        "Tổng hợp toàn bộ các biểu đồ và hình ảnh gốc phục vụ đối chiếu.",
     )
-    render_output_figure(
-        "figure_4_5_equity_curves.png",
-        "Đường cong hiệu suất (Figure 4.5) · liên quan Tab 03",
+
+    image_extensions = (".png", ".jpg", ".jpeg")
+    found_images = []
+    
+    # Mở rộng danh sách tìm kiếm bao gồm cả đường dẫn lồng nhau outputs/figures/figures
+    target_dirs = []
+    for d in base_dirs:
+        target_dirs.append(d)
+        target_dirs.append(d / "outputs" / "figures")
+        target_dirs.append(d / "outputs" / "figures" / "figures") # Hỗ trợ thư mục lồng nhau hiện tại của bạn
+
+    for d in target_dirs:
+        if d.is_dir():
+            for f in d.iterdir():
+                if f.is_file() and f.suffix.lower() in image_extensions:
+                    if f.name not in ["logo.png"] and f not in found_images:
+                        found_images.append(f)
+
+    # Sắp xếp danh sách ảnh theo tên cho gọn gàng (ưu tiên hiển thị theo thứ tự figure_4_1, figure_4_2,...)
+    found_images = sorted(found_images, key=lambda x: x.name)
+
+    if found_images:
+        for img_path in found_images:
+            # Tạo tên hiển thị thân thiện dựa vào tên file
+            display_name = img_path.stem.replace("_", " ").title()
+            with st.expander(f"🖼️ {display_name} ({img_path.name})", expanded=False):
+                st.image(str(img_path), caption=f"Đường dẫn: {img_path.name}", use_container_width=True)
+    else:
+        st.warning("⚠️ Không tìm thấy file hình ảnh nào trong thư mục outputs/figures.")
+        
+    # =====================================================
+    # PHỤ LỤC B: HỆ THỐNG BẢNG DỮ LIỆU NGHIÊN CỨU (CSV)
+    # =====================================================
+    step_heading(
+        "PHỤ LỤC B",
+        "Thư viện Bảng số liệu Định lượng (Chương 4)",
+        accent,
+        "Tra cứu toàn bộ các bảng kết quả từ thống kê mô tả, phân rã, backtest đến hồi quy và kiểm định độ nhạy.",
     )
+
+    csv_files_info = [
+        ("Bảng 4.1 - 4.2: Thống kê mô tả thị trường", "Bang_4_1_4_2_Gop_Thong_Ke_Mo_Ta.csv"),
+        ("Bảng 4.3: Phân rã chi tiết lợi nhuận LP", "Bang_4_3_Phan_Ra_Loi_Nhuan.csv"),
+        ("Bảng 4.5: Mô hình hồi quy OLS cơ sở", "Bang_4_5_Hoi_Quy_OLS_Co_So.csv"),
+        ("Bảng 4.7: Hồi quy phân vị chi tiết (Quantile Regression)", "Bang_4_7_Hoi_Quy_Phan_Vi_Chi_Tiet.csv"),
+        ("Bảng 4.8: So sánh tổng hợp hiệu suất Backtest", "Bang_4_8_So_Sanh_Backtest.csv"),
+        ("Bảng 4.9 - 4.11: Tối ưu hóa dải giá & OOS", "Bang_4_9_4_11_Gop_Optimizer_OOS.csv"),
+        ("Bảng 4.12: Phân tích độ nhạy & Stress Test", "Bang_4_12_Phan_Tich_Do_Nhay_Stress_Test.csv"),
+    ]
+
+    for title, filename in csv_files_info:
+        file_path = None
+        for d in base_dirs:
+            candidate = d / filename
+            if candidate.is_file():
+                file_path = candidate
+                break
+            candidate_sub = d / "outputs" / "tables" / filename
+            if candidate_sub.is_file():
+                file_path = candidate_sub
+                break
+
+        if file_path and file_path.is_file():
+            with st.expander(f"📁 {title} ({filename})", expanded=False):
+                try:
+                    df_table_csv = pd.read_csv(file_path)
+                    st.dataframe(df_table_csv, use_container_width=True)
+                    
+                    csv_bytes = df_table_csv.to_csv(index=False).encode("utf-8")
+                    st.download_button(
+                        label=f"📥 Tải xuống {filename}",
+                        data=csv_bytes,
+                        file_name=filename,
+                        mime="text/csv",
+                        key=f"dl_{filename}"
+                    )
+                except Exception as e:
+                    st.error(f"Không thể đọc file {filename}: {e}")
+        else:
+            st.warning(f"⚠️ Chưa tìm thấy file dữ liệu: `{filename}`")
 
     st.markdown("---")
-    step_heading("PHỤ LỤC B", "Tính lại backtest và mô hình", accent, "Chỉ chạy khi bấm nút; kết quả CSV được lưu vào outputs/tables/.")
+
+    # =====================================================
+    # PHỤ LỤC C: CÔNG CỤ TÍNH LẠI BACKTEST & MÔ HÌNH HỒI QUY
+    # =====================================================
+    step_heading(
+        "PHỤ LỤC C",
+        "Công cụ Tái lập (Recompute & Simulate)",
+        accent,
+        "Thực thi trực tiếp mã nguồn backtest và các mô hình kinh tế lượng từ tập dữ liệu lịch sử đã chuẩn hóa.",
+    )
+    
     if st.button(
-        "Chạy backtest và hồi quy",
+        "🚀 Chạy lại toàn bộ Backtest & Mô hình Hồi quy",
         disabled=df_daily.empty,
         key="recompute_analysis",
+        use_container_width=True,
     ):
-        with st.spinner("Đang chạy backtest và các mô hình hồi quy..."):
+        with st.spinner("Đang thực thi mô phỏng backtest và chạy các mô hình kinh tế lượng..."):
             ledger, decompositions, metrics = run_backtest(df_daily)
             export_backtest_results(ledger, decompositions, metrics)
             _, panel_results, quantile_results, ols_model = run_regressions(
                 df_daily, ledger
             )
-        st.success(f"Đã lưu kết quả. Panel OLS R² = {ols_model.rsquared:.4f}")
-        st.write("Chỉ số backtest")
+        st.success(f"✅ Đã hoàn tất tính toán và lưu kết quả mới! Panel OLS $R^2$ = {ols_model.rsquared:.4f}")
+        
+        st.write("**1. Chỉ số hiệu suất Backtest tổng hợp:**")
         st.dataframe(metrics, use_container_width=True)
-        st.write("Panel fixed-effects")
+        
+        st.write("**2. Kết quả Panel Fixed-Effects Regression:**")
         st.dataframe(panel_results, use_container_width=True)
-        st.write("Quantile regression")
+        
+        st.write("**3. Kết quả Quantile Regression:**")
         st.dataframe(quantile_results, use_container_width=True)
-
-
 # ---------------------------------------------------------
 # 6. ĐỊNH TUYẾN TRANG THEO NÚT Ở SIDEBAR
 # ---------------------------------------------------------

@@ -7,7 +7,8 @@ import numpy as np
 import pandas as pd
 
 from src.features.build_features import OUTPUT_TABLES_DIR, ensure_market_features
-from src.models.optimizer import calc_v_lp, get_amounts, get_liquidity, get_strategy_range
+from src.models.uniswap_v3_math import get_position_value_usd, get_position_amounts, calculate_liquidity_from_capital
+from src.models.strategies import compute_strategy_bounds
 
 POOLS_CONFIG = {
     "P1": {"pool_id": "P1", "pair": "WETH/USDC", "fee_tier": 0.0005, "tick_spacing": 10, "dec0": 18, "dec1": 6},
@@ -51,7 +52,7 @@ def run_backtest(
 
         for strategy in STRATEGIES:
             initial_price = float(pool_data["price"].iloc[0])
-            lower_price, upper_price = get_strategy_range(
+            lower_price, upper_price = compute_strategy_bounds(
                 strategy,
                 initial_price,
                 float(pool_data["volatility"].iloc[0]),
@@ -59,7 +60,7 @@ def run_backtest(
             )
             amount0 = (initial_capital * 0.5) / max(initial_price, 1e-8)
             amount1 = initial_capital * 0.5
-            liquidity = get_liquidity(
+            liquidity = calculate_liquidity_from_capital(
                 initial_price, lower_price, upper_price, amount0, amount1
             )
 
@@ -98,16 +99,16 @@ def run_backtest(
                     rebalance_cost = initial_capital * 0.001 * 0.5
                     cumulative_gas += gas
                     cumulative_rebalance += rebalance_cost
-                    lower_price, upper_price = get_strategy_range(
+                    lower_price, upper_price = compute_strategy_bounds(
                         strategy,
                         current_price,
                         row["volatility"],
                         pool_config,
                     )
-                    current_amount0, current_amount1 = get_amounts(
+                    current_amount0, current_amount1 = get_position_amounts(
                         current_price, lower_price, upper_price, liquidity
                     )
-                    liquidity = get_liquidity(
+                    liquidity = calculate_liquidity_from_capital(
                         current_price,
                         lower_price,
                         upper_price,
@@ -115,7 +116,7 @@ def run_backtest(
                         current_amount1,
                     )
 
-                lp_value = calc_v_lp(
+                lp_value = get_position_value_usd(
                     current_price, lower_price, upper_price, liquidity
                 )
                 hodl_value = amount0 * current_price + amount1
