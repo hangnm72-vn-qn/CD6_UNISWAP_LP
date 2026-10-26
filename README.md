@@ -1,7 +1,14 @@
-# CD6_UNISWAP_LP
-Đánh giá hiệu quả cung cấp thanh khoản tập trung và tối ưu vùng giá trên Uniswap v3
+```markdown
+# 🦄 CD6_UNISWAP_LP: Uniswap v3 Quantitative Research & LP Optimizer
+
+Đánh giá hiệu quả cung cấp thanh khoản tập trung và tối ưu vùng giá trên Uniswap v3.
+
+> 🌐 **Trải nghiệm Demo trực tuyến:** [https://cd6uniswaplp-amjoduvffdbhvrz5tjaq9i.streamlit.app] 
+> *Lưu ý: Đây là công cụ mô phỏng nghiên cứu (Research Simulator), không phải là khuyến nghị hay lời khuyên đầu tư tài chính.*
+
 ---
-# Uniswap v3 LP Optimizer — Data Pipeline
+
+## Uniswap v3 LP Optimizer — Data Pipeline
 
 Dự án thu thập, chuẩn hóa và tạo bộ dữ liệu chuỗi thời gian phục vụ phân tích pool thanh khoản Uniswap v3 trên Ethereum Mainnet. Dữ liệu đầu ra kết hợp hoạt động của pool, giá tham chiếu, gas và TVL giao thức; đồng thời bổ sung các đặc trưng biến động, thanh khoản và chi phí tái cân bằng.
 
@@ -36,24 +43,25 @@ API nguồn
       data/processed/*.parquet
                  ↓
     validate_processed.py / phân tích
+
 ```
 
 | Module | Vai trò |
 | --- | --- |
-| [`src/data/utils.py`](src/data/utils.py) | Đọc YAML, dựng URL The Graph, gọi REST/GraphQL có timeout và retry, lưu cache JSON. |
-| [`src/data/fetch_subgraph.py`](src/data/fetch_subgraph.py) | Phân trang và tải dữ liệu pool theo giờ/ngày từ The Graph. |
-| [`src/data/fetch_prices.py`](src/data/fetch_prices.py) | Tải nến tham chiếu 1 giờ và 1 ngày từ Binance. |
-| [`src/data/fetch_tvl.py`](src/data/fetch_tvl.py) | Tải chuỗi TVL lịch sử từ DefiLlama. |
-| [`src/data/fetch_gas.py`](src/data/fetch_gas.py) | Tải gas price ngày từ Etherscan; nếu không có dữ liệu/API key thì tạo chuỗi baseline 25 Gwei cho pipeline mô phỏng. |
-| [`src/data/clean.py`](src/data/clean.py) | Đọc dữ liệu gốc, chuẩn hóa giá, căn lưới giờ, điền nến khuyết và gắn cờ outlier. |
-| [`src/data/features.py`](src/data/features.py) | Tính biến động, GARCH, chỉ số thanh khoản và chi phí rebalance. |
-| [`src/data/build_dataset.py`](src/data/build_dataset.py) | Kết nối các bước xử lý, xuất dữ liệu từng pool, panel tổng hợp và CSV preview. |
-| [`src/data/validate_processed.py`](src/data/validate_processed.py) | Kiểm tra schema, timestamp, khoảng trống, giá trị không hợp lệ, missing và phân phối. |
-| [`src/features/build_features.py`](src/features/build_features.py) | Chuẩn hóa dữ liệu daily, nhận diện pool và bổ sung volume, log return, volatility cho notebook phân tích. |
-| [`src/models/optimizer.py`](src/models/optimizer.py) | Công thức tick/liquidity/range của Uniswap v3, fixed-effects OLS và quantile regression. |
-| [`src/evaluation/backtest.py`](src/evaluation/backtest.py) | Chạy các chiến lược LP, tính metrics và xuất position ledger/decomposition. |
-| [`notebooks/tong_hop.ipynb`](notebooks/tong_hop.ipynb) | Notebook phân tích gọi các module trong `src/`; bảng và biểu đồ được lưu ở `outputs/tables/` và `outputs/figures/` tại thư mục gốc. |
-| [`tests/`](tests/) | Kiểm thử pipeline, feature và một số điều kiện chống look-ahead bias. |
+| [`src/data/utils.py`](https://www.google.com/search?q=src/data/utils.py) | Đọc YAML, dựng URL The Graph, gọi REST/GraphQL có timeout và retry, lưu cache JSON. |
+| [`src/data/fetch_subgraph.py`](https://www.google.com/search?q=src/data/fetch_subgraph.py) | Phân trang và tải dữ liệu pool theo giờ/ngày từ The Graph. |
+| [`src/data/fetch_prices.py`](https://www.google.com/search?q=src/data/fetch_prices.py) | Tải nến tham chiếu 1 giờ và 1 ngày từ Binance. |
+| [`src/data/fetch_tvl.py`](https://www.google.com/search?q=src/data/fetch_tvl.py) | Tải chuỗi TVL lịch sử từ DefiLlama. |
+| [`src/data/fetch_gas.py`](https://www.google.com/search?q=src/data/fetch_gas.py) | Tải gas price ngày từ Etherscan; nếu không có dữ liệu/API key thì tạo chuỗi baseline 25 Gwei cho pipeline mô phỏng. |
+| [`src/data/clean.py`](https://www.google.com/search?q=src/data/clean.py) | Đọc dữ liệu gốc, chuẩn hóa giá, căn lưới giờ, điền nến khuyết và gắn cờ outlier. |
+| [`src/data/features.py`](https://www.google.com/search?q=src/data/features.py) | Tính biến động, GARCH, chỉ số thanh khoản và chi phí rebalance. |
+| [`src/data/build_dataset.py`](https://www.google.com/search?q=src/data/build_dataset.py) | Kết nối các bước xử lý, xuất dữ liệu từng pool, panel tổng hợp và CSV preview. |
+| [`src/data/validate_processed.py`](https://www.google.com/search?q=src/data/validate_processed.py) | Kiểm tra schema, timestamp, khoảng trống, giá trị không hợp lệ, missing và phân phối. |
+| [`src/features/build_features.py`](https://www.google.com/search?q=src/features/build_features.py) | Chuẩn hóa dữ liệu daily, nhận diện pool và bổ sung volume, log return, volatility cho notebook phân tích. |
+| [`src/models/optimizer.py`](https://www.google.com/search?q=src/models/optimizer.py) | Công thức tick/liquidity/range của Uniswap v3, fixed-effects OLS và quantile regression. |
+| [`src/evaluation/backtest.py`](https://www.google.com/search?q=src/evaluation/backtest.py) | Chạy các chiến lược LP, tính metrics và xuất position ledger/decomposition. |
+| [`notebooks/tong_hop.ipynb`](https://www.google.com/search?q=notebooks/tong_hop.ipynb) | Notebook phân tích gọi các module trong `src/`; bảng và biểu đồ được lưu ở `outputs/tables/` và `outputs/figures/` tại thư mục gốc. |
+| [`tests/`](https://www.google.com/search?q=tests/) | Kiểm thử pipeline, feature và một số điều kiện chống look-ahead bias. |
 
 TVL DefiLlama được đưa vào dữ liệu từ ngày kế tiếp ngày ghi nhận nhằm tránh dùng thông tin chưa sẵn có tại thời điểm quan sát. Các nến thiếu hoạt động được đánh dấu `is_filled`; giá được giữ theo quan sát trước đó, còn volume/fees được đặt bằng 0. Outlier được đánh dấu chứ không bị xóa.
 
@@ -68,6 +76,7 @@ py -m venv .venv
 .\.venv\Scripts\Activate.ps1
 python -m pip install --upgrade pip
 pip install -r requirements.txt
+
 ```
 
 Nếu PowerShell không cho phép kích hoạt môi trường, có thể gọi Python trong virtual environment trực tiếp bằng `.\.venv\Scripts\python.exe`.
@@ -79,13 +88,14 @@ Tạo file `.env` ở thư mục gốc với nội dung:
 ```dotenv
 GRAPH_API_KEY=your_the_graph_api_key
 ETHERSCAN_API_KEY=your_etherscan_api_key
+
 ```
 
 `GRAPH_API_KEY` là bắt buộc để chạy bước tải Subgraph. `ETHERSCAN_API_KEY` là tùy chọn; khi không có key hoặc không lấy được dữ liệu gas, pipeline sử dụng baseline gas để tiếp tục. Không đưa API key lên kho mã nguồn hoặc chia sẻ công khai.
 
 ### 3.3. Cấu hình dữ liệu
 
-Chỉnh `timeframe`, `pools` và `features` trong [`config/config.yaml`](config/config.yaml) trước khi cào dữ liệu. Hãy đảm bảo địa chỉ pool, thứ tự token, decimals và `price_quote` khớp với pool cần nghiên cứu. Các file và lệnh bên dưới dùng đường dẫn tương đối, vì vậy cần chạy từ thư mục gốc dự án.
+Chỉnh `timeframe`, `pools` và `features` trong [`config/config.yaml`](https://www.google.com/search?q=config/config.yaml) trước khi cào dữ liệu. Hãy đảm bảo địa chỉ pool, thứ tự token, decimals và `price_quote` khớp với pool cần nghiên cứu. Các file và lệnh bên dưới dùng đường dẫn tương đối, vì vậy cần chạy từ thư mục gốc dự án.
 
 ## 4. Chạy pipeline
 
@@ -96,6 +106,7 @@ python -m src.data.fetch_subgraph
 python -m src.data.fetch_prices
 python -m src.data.fetch_tvl
 python -m src.data.fetch_gas
+
 ```
 
 Các script tạo cache trong `data/raw/`. Có thể chạy lại từng lệnh tương ứng để cập nhật cache. Bước dựng dataset bên dưới đọc các file cache này, không tự gọi các API.
@@ -104,27 +115,30 @@ Các script tạo cache trong `data/raw/`. Có thể chạy lại từng lệnh 
 
 ```powershell
 python -m src.data.build_dataset
+
 ```
 
 Kết quả được lưu vào `data/processed/`:
 
-- `<pool_name>_processed.parquet`: dữ liệu đã xử lý của từng pool.
-- `uniswap_v3_panel_4pools.parquet`: dữ liệu panel gộp các pool.
-- `uniswap_v3_sample_preview.csv`: tối đa 500 dòng đầu của panel để xem nhanh. Nếu file đang bị khóa, chương trình ghi preview sang tên có timestamp.
+* `<pool_name>_processed.parquet`: dữ liệu đã xử lý của từng pool.
+* `uniswap_v3_panel_4pools.parquet`: dữ liệu panel gộp các pool.
+* `uniswap_v3_sample_preview.csv`: tối đa 500 dòng đầu của panel để xem nhanh. Nếu file đang bị khóa, chương trình ghi preview sang tên có timestamp.
 
 ### 4.3. Kiểm định và kiểm thử
 
 ```powershell
 python -m src.data.validate_processed
 python -m pytest
+
 ```
 
-Script kiểm định đọc mọi file `*.parquet` trong `data/processed/`, in báo cáo và trả mã thoát khác 0 nếu kiểm định thất bại. Khoảng trống thời gian lớn hơn một giờ và tỷ lệ missing cao được báo cảnh báo; xem chi tiết các cột và nguồn trong [`data/processed/data_dictionary.md`](data/processed/data_dictionary.md).
+Script kiểm định đọc mọi file `*.parquet` trong `data/processed/`, in báo cáo và trả mã thoát khác 0 nếu kiểm định thất bại. Khoảng trống thời gian lớn hơn một giờ và tỷ lệ missing cao được báo cảnh báo; xem chi tiết các cột và nguồn trong [`data/processed/data_dictionary.md`](https://www.google.com/search?q=data/processed/data_dictionary.md).
 
 ### 4.5. Chạy dashboard
 
 ```powershell
 streamlit run dashboard/app.py
+
 ```
 
 Dashboard đọc dữ liệu daily từ `data/processed/pools_daily.csv`, các bảng JSON từ `outputs/tables/` và ảnh notebook từ `outputs/figures/`. Các đường dẫn được xác định tương đối theo vị trí mã nguồn, không phụ thuộc thư mục hiện hành khi khởi chạy.
@@ -156,15 +170,20 @@ print(pool[[
     "fee_yield",
     "cost_rebalance_usd",
 ]].head())
+
 ```
 
 Một số gợi ý:
 
-- Dùng `pool_name` để lọc pool; `datetime` là timestamp UTC, theo lưới giờ.
-- Dùng `close_clean` làm chuỗi giá đã chuẩn hóa; `is_filled` cho biết quan sát là nến được điền; `is_outlier` đánh dấu chênh lệch giá vượt ngưỡng tham chiếu.
-- Dùng `volumeUSD`, `feesUSD`, `tvlUSD`, `volume_turnover` và `fee_yield` để khảo sát hoạt động/thanh khoản.
-- Dùng `log_return`, `vol_hist_24h`/`168h`/`720h`, `vol_parkinson_24h` và `vol_garch_forecast` để phân tích biến động.
-- Dùng `avg_gas_price_gwei` và `cost_rebalance_usd` để xem chi phí gas ước tính. Nếu pipeline dùng gas baseline, cần ghi rõ đây là dữ liệu mô phỏng, không phải gas lịch sử thực tế.
-- Dùng `defillama_protocol_tvl_usd` như chỉ báo TVL giao thức; giá trị được căn thời điểm sẵn có theo ngày và có thể không trùng chính xác với TVL của từng pool.
+* Dùng `pool_name` để lọc pool; `datetime` là timestamp UTC, theo lưới giờ.
+* Dùng `close_clean` làm chuỗi giá đã chuẩn hóa; `is_filled` cho biết quan sát là nến được điền; `is_outlier` đánh dấu chênh lệch giá vượt ngưỡng tham chiếu.
+* Dùng `volumeUSD`, `feesUSD`, `tvlUSD`, `volume_turnover` và `fee_yield` để khảo sát hoạt động/thanh khoản.
+* Dùng `log_return`, `vol_hist_24h`/`168h`/`720h`, `vol_parkinson_24h` và `vol_garch_forecast` để phân tích biến động.
+* Dùng `avg_gas_price_gwei` và `cost_rebalance_usd` để xem chi phí gas ước tính. Nếu pipeline dùng gas baseline, cần ghi rõ đây là dữ liệu mô phỏng, không phải gas lịch sử thực tế.
+* Dùng `defillama_protocol_tvl_usd` như chỉ báo TVL giao thức; giá trị được căn thời điểm sẵn có theo ngày và có thể không trùng chính xác với TVL của từng pool.
 
-Danh sách đầy đủ trường dữ liệu, đơn vị và mô tả nằm trong [`data/processed/data_dictionary.md`](data/processed/data_dictionary.md).
+Danh sách đầy đủ trường dữ liệu, đơn vị và mô tả nằm trong [`data/processed/data_dictionary.md`].
+
+```
+
+```
